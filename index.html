@@ -124,14 +124,8 @@
       2: "https://placebear.com/800/500",
       3: "https://picsum.photos/800/500?grayscale"
     };
-
     btn.addEventListener("click", () => {
-      tablet.classList.toggle("active");
-      btn.textContent = tablet.classList.contains("active") 
-        ? "Fechar Tablet" 
-        : "Abrir Tablet";
-    });
-  
+      const ativo = tablet.classList.toggle("active");
       if (ativo) {
         somAbrir.currentTime = 0; 
         somAbrir.play();
