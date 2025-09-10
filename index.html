@@ -128,6 +128,24 @@
     #jogo {
       display: none;
     }
+      /* Tela de vitória */
+    #vitoria {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      font-size: 4em;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+      flex-direction: column;
+    }
   </style>
 </head>
 <body>
@@ -149,14 +167,52 @@
   </div>
   <audio id="somAbrir" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
+  <audio id="somVitoria" src="vitoria.mp3"></audio>
+  </div>
+  <div id="vitoria">
+    6 AM<br>
+    Você Sobreviveu!
   </div>
   <script>
     const menu = document.getElementById("menu");
     const jogo = document.getElementById("jogo");
+     const horasEl = document.getElementById("horas");
+    const vitoria = document.getElementById("vitoria");
+
+    let horaAtual = 0; 
+    let timer;
 
     function iniciarJogo() {
       menu.style.display = "none";
       jogo.style.display = "block";
+      iniciarHoras();
+    }
+      function iniciarHoras() {
+      horaAtual = 0;
+      atualizarHora();
+      timer = setInterval(() => {
+        horaAtual++;
+        if (horaAtual <= 6) {
+          atualizarHora();
+        }
+        if (horaAtual === 6) {
+          fimDoJogo();
+        }
+      }, 10000);
+    }
+
+    function atualizarHora() {
+      if (horaAtual === 0) {
+        horasEl.textContent = "12 AM";
+      } else {
+        horasEl.textContent = horaAtual + " AM";
+      }
+    }
+
+    function fimDoJogo() {
+      clearInterval(timer);
+      document.getElementById("somVitoria").play();
+      vitoria.style.display = "flex";
     }
     const btn = document.getElementById("btnTablet");
     const tablet = document.getElementById("tablet");
