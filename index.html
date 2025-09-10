@@ -95,12 +95,48 @@
     #tablet.active {
       bottom: 0;
     }
+     #menu {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    #menu h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+    }
+
+    #menu button {
+      background: #444;
+      color: white;
+      font-size: 1.5em;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #menu button:hover {
+      background: #666;
+    }
+
+    /* Esconde o jogo até iniciar */
+    #jogo {
+      display: none;
+    }
   </style>
 </head>
 <body>
-
+<div id="menu">
+    <h1>Five Nights Clone</h1>
+    <button onclick="iniciarJogo()">Iniciar</button>
+</div>
+<div id="jogo">
   <button id="btnTablet">Abrir Tablet</button>
-
   <div id="tablet">
     <div class="screen" id="cameraScreen">
       <img src="https://placekitten.com/800/500" alt="Câmera 1">
@@ -113,7 +149,15 @@
   </div>
   <audio id="somAbrir" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
+  </div>
   <script>
+    const menu = document.getElementById("menu");
+    const jogo = document.getElementById("jogo");
+
+    function iniciarJogo() {
+      menu.style.display = "none";
+      jogo.style.display = "block";
+    }
     const btn = document.getElementById("btnTablet");
     const tablet = document.getElementById("tablet");
     const cameraScreen = document.getElementById("cameraScreen");
