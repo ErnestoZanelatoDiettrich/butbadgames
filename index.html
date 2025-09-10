@@ -17,20 +17,25 @@
       align-items: flex-end;
     }
 
-    /* Botão para abrir o tablet */
+   /* Botão seta estilo FNAF */
     #btnTablet {
       position: absolute;
-      bottom: 20px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #0f0;
-      color: black;
-      font-weight: bold;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 40px solid #0f0; /* Cor da seta */
       cursor: pointer;
       z-index: 100;
+      transition: border-bottom-color 0.3s;
     }
 
+    #btnTablet:hover {
+      border-bottom-color: #4f4;
+    }
     /* Área do tablet */
     #tablet {
       position: fixed;
