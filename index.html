@@ -125,7 +125,7 @@
     }
 
     /* Esconde o jogo até iniciar */
-    #jogo {
+    #jogo, #vitoria {
       display: none;
     }
       /* Tela de vitória */
@@ -185,6 +185,7 @@
     function iniciarJogo() {
       menu.style.display = "none";
       jogo.style.display = "block";
+      vitoria.style.display = "none";
       iniciarHoras();
     }
       function iniciarHoras() {
