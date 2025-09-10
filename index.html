@@ -111,7 +111,8 @@
       <button onclick="trocarCamera(3)">Cam 3</button>
     </div>
   </div>
-
+  <audio id="somAbrir" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
+  <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <script>
     const btn = document.getElementById("btnTablet");
     const tablet = document.getElementById("tablet");
@@ -129,7 +130,15 @@
         ? "Fechar Tablet" 
         : "Abrir Tablet";
     });
-
+  
+      if (ativo) {
+        somAbrir.currentTime = 0; 
+        somAbrir.play();
+      } else {
+        somFechar.currentTime = 0;
+        somFechar.play();
+      }
+    });
     function trocarCamera(num) {
       cameraScreen.innerHTML = `<img src="${cameras[num]}" alt="Câmera ${num}">`;
     }
