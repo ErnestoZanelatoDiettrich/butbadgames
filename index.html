@@ -2,21 +2,59 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fnaf but bad</title>
+  <title>FNAF Clone</title>
   <style>
     body {
       margin: 0;
-      background-image: url('fds fnaf png.png');
+      background: url("fundo.png") no-repeat center center fixed;
       background-size: cover;
-      color: white;
       font-family: Arial, sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
+      color: white;
+      overflow: hidden;
     }
-     /* Área das câmeras */
+
+    /* Menu inicial */
+    #menu {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 300;
+    }
+    #menu button {
+      padding: 15px 30px;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    /* Área do jogo */
+    #jogo {
+      display: none;
+      width: 100%; height: 100%;
+      position: relative;
+    }
+
+    /* Tablet */
+    #tablet {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      transition: bottom 0.5s;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mapa */
     #mapa {
       position: relative;
       background: url("mapa.png") no-repeat center;
@@ -38,22 +76,8 @@
       border: 2px solid white;
     }
 
-   /* Botão seta estilo FNAF */
-    #btnTablet {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 30px solid transparent;
-      border-right: 30px solid transparent;
-      border-bottom: 40px solid #0f0; /* Cor da seta */
-      cursor: pointer;
-      z-index: 100;
-      transition: border-bottom-color 0.3s;
-    }
-   #cameraView {
+    /* Tela da câmera */
+    #cameraView {
       width: 80%;
       height: 200px;
       background: #111;
@@ -62,191 +86,140 @@
       justify-content: center;
       align-items: center;
       font-size: 2em;
+      color: white;
     }
-    #btnTablet:hover {
-      border-bottom-color: #4f4;
-    }
-    /* Área do tablet */
-    #tablet {
-      position: fixed;
-      bottom: -100%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 70%;
-      background: #222;
-      border: 5px solid #444;
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 -5px 15px rgba(0,0,0,0.8);
-      transition: bottom 0.6s ease-in-out;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+    #cameraView img {
+      max-width: 100%;
+      max-height: 100%;
     }
 
-    /* Tela das câmeras */
-    .screen {
-      flex: 1;
+    /* Botão do tablet */
+    #abrirTablet {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2em;
+      color: white;
+      z-index: 101;
+    }
+
+    /* Relógio */
+    #relogio {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      font-size: 2em;
+    }
+
+    /* Tela de vitória */
+    #vitoria {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: black;
+      color: white;
+      font-size: 4em;
+      font-weight: bold;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-
-    .screen img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: cover;
-    }
-
-    /* Barra inferior com seleção */
-    .menu {
-      background: #111;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .menu button {
-      background: #444;
-      border: none;
-      padding: 8px 12px;
-      color: white;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-
-    .menu button:hover {
-      background: #666;
-    }
-
-    /* Quando ativo, sobe */
-    #tablet.active {
-      bottom: 0;
-    }
-     #menu {
-      text-align: center;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
-    }
-
-    #menu h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      letter-spacing: 3px;
-    }
-
-    #menu button {
-      background: #444;
-      color: white;
-      font-size: 1.5em;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    #menu button:hover {
-      background: #666;
-    }
-
-    /* Esconde o jogo até iniciar */
-    #jogo{
-      display: none;
+      z-index: 200;
+      flex-direction: column;
     }
   </style>
 </head>
 <body>
-<div id="menu">
-    <h1>Five Nights at bad</h1>
+
+  <!-- Menu inicial -->
+  <div id="menu">
+    <h1>Five Nights Clone</h1>
     <button onclick="iniciarJogo()">Iniciar</button>
-</div>
-<div id="jogo">
-  <button id="btnTablet">Abrir Tablet</button>
-  <div id="tablet">
-    <div class="screen" id="cameraScreen">
-      <img src="https://placekitten.com/800/500" alt="Câmera 1">
+  </div>
+
+  <!-- Área do jogo -->
+  <div id="jogo">
+    <div id="relogio">12 AM</div>
+    <button id="abrirTablet">▲</button>
+
+    <!-- Tablet -->
+    <div id="tablet">
+      <div id="mapa">
+        <div class="camera-btn" style="top:20px; left:50px;" onclick="trocarCamera(1)"></div>
+        <div class="camera-btn" style="top:20px; left:200px;" onclick="trocarCamera(2)"></div>
+        <div class="camera-btn" style="top:100px; left:100px;" onclick="trocarCamera(3)"></div>
+        <div class="camera-btn" style="top:150px; left:250px;" onclick="trocarCamera(4)"></div>
+      </div>
+      <div id="cameraView">Selecione uma câmera</div>
     </div>
-  <div id="mapa">
-      <div class="camera-btn" style="top:20px; left:50px;" onclick="trocarCamera('Sala 1')"></div>
-      <div class="camera-btn" style="top:20px; left:200px;" onclick="trocarCamera('Sala 2')"></div>
-      <div class="camera-btn" style="top:100px; left:100px;" onclick="trocarCamera('Corredor')"></div>
-      <div class="camera-btn" style="top:150px; left:250px;" onclick="trocarCamera('Escritório')"></div>
   </div>
-  <div id="cameraView">Selecione uma câmera</div>
-    <div class="menu">
-    </div>
-  </div>
-  <audio id="somAbrir" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
-  <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
-  <audio id="somVitoria" src="FNAF - 6 AM sound.mp3"></audio>
-  </div>
+
+  <!-- Tela de vitória -->
   <div id="vitoria">
-    6 AM<br>
-    Você Sobreviveu!
+    <p>6 AM</p>
+    <button onclick="location.reload()">Voltar ao menu</button>
   </div>
+
+  <!-- Sons -->
+  <audio id="somAbrir" src="abrir.mp3"></audio>
+  <audio id="somFechar" src="fechar.mp3"></audio>
+  <audio id="somVitoria" src="vitoria.mp3"></audio>
+
   <script>
     const menu = document.getElementById("menu");
     const jogo = document.getElementById("jogo");
-     const horasEl = document.getElementById("horas");
+    const tablet = document.getElementById("tablet");
+    const botaoTablet = document.getElementById("abrirTablet");
     const vitoria = document.getElementById("vitoria");
-    let horaAtual = 0; 
+    const relogio = document.getElementById("relogio");
+
+    let aberto = false;
+    let hora = 0;
+    let horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
     let timer;
+
+    // abrir/fechar tablet
+    botaoTablet.addEventListener("click", () => {
+      aberto = !aberto;
+      tablet.style.bottom = aberto ? "0" : "-100%";
+      document.getElementById(aberto ? "somAbrir" : "somFechar").play();
+    });
+
+    // trocar câmera
+    function trocarCamera(num) {
+      let view = document.getElementById("cameraView");
+      view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
+    }
+
+    // iniciar jogo
     function iniciarJogo() {
       menu.style.display = "none";
       jogo.style.display = "block";
       vitoria.style.display = "none";
-      iniciarHoras();
-    }
-    function iniciarHoras() {
-      horaAtual = 0;
-      atualizarHora();
+      hora = 0;
+      relogio.innerText = horas[hora];
+
       timer = setInterval(() => {
-        horaAtual++;
-        if (horaAtual <= 6) {
-          atualizarHora();
+        hora++;
+        if (hora < horas.length) {
+          relogio.innerText = horas[hora];
         }
-        if (horaAtual === 6) {
+        if (hora === horas.length - 1) {
           fimDoJogo();
         }
-      }, 10000);
+      }, 5000); // cada hora dura 5s (ajuste se quiser)
     }
 
-    function atualizarHora() {
-      if (horaAtual === 0) {
-        horasEl.textContent = "12 AM";
-      } else {
-        horasEl.textContent = horaAtual + " AM";
-      }
-    }
-
+    // fim do jogo
     function fimDoJogo() {
       clearInterval(timer);
       document.getElementById("somVitoria").play();
       vitoria.style.display = "flex";
     }
-    const btn = document.getElementById("btnTablet");
-    const tablet = document.getElementById("tablet");
-    const cameraScreen = document.getElementById("cameraScreen");
-    const somAbrir = document.getElementById("somAbrir");
-    const somFechar = document.getElementById("somFechar");
-    const botao = document.getElementById("abrirTablet");
-    let aberto = false;
-
-    botao.addEventListener("click", () => {
-      aberto = !aberto;
-      tablet.style.bottom = aberto ? "0" : "-100%";
-    });
-
-    function trocarCamera(nome) {
-      document.getElementById("cameraView").innerText = "Câmera: " + nome;
-    }
   </script>
-
 </body>
 </html>
-
