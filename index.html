@@ -53,7 +53,16 @@
       z-index: 100;
       transition: border-bottom-color 0.3s;
     }
-
+   #cameraView {
+      width: 80%;
+      height: 200px;
+      background: #111;
+      border: 3px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+    }
     #btnTablet:hover {
       border-bottom-color: #4f4;
     }
@@ -167,7 +176,8 @@
       <div class="camera-btn" style="top:20px; left:200px;" onclick="trocarCamera('Sala 2')"></div>
       <div class="camera-btn" style="top:100px; left:100px;" onclick="trocarCamera('Corredor')"></div>
       <div class="camera-btn" style="top:150px; left:250px;" onclick="trocarCamera('Escritório')"></div>
-  </div> 
+  </div>
+  <div id="cameraView">Selecione uma câmera</div>
     <div class="menu">
     </div>
   </div>
