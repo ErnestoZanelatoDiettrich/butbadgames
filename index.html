@@ -57,10 +57,10 @@
     /* Mapa */
     #mapa {
       position: relative;
-      background: url("mapa.png") no-repeat center;
+      background: url("https://github.com/ErnestoZanelatoDiettrich/butbadgames/blob/main/fds%20minimap%20ofc.png?raw=true") no-repeat center;
       background-size: contain;
-      width: 400px;
-      height: 250px;
+      width: 500px;   /* aumentei um pouco pra encaixar melhor */
+      height: 300px;
       border: 2px solid white;
       margin-bottom: 20px;
     }
@@ -149,10 +149,13 @@
     <!-- Tablet -->
     <div id="tablet">
       <div id="mapa">
-        <div class="camera-btn" style="top:20px; left:50px;" onclick="trocarCamera(1)"></div>
-        <div class="camera-btn" style="top:20px; left:200px;" onclick="trocarCamera(2)"></div>
-        <div class="camera-btn" style="top:100px; left:100px;" onclick="trocarCamera(3)"></div>
-        <div class="camera-btn" style="top:150px; left:250px;" onclick="trocarCamera(4)"></div>
+         <div class="camera-btn" style="top:40px; left:60px;" onclick="trocarCamera(1)" title="Câmera 1"></div>
+        <div class="camera-btn" style="top:40px; left:160px;" onclick="trocarCamera(2)" title="Câmera 2"></div>
+        <div class="camera-btn" style="top:40px; left:260px;" onclick="trocarCamera(3)" title="Câmera 3"></div>
+        <div class="camera-btn" style="top:100px; left:100px;" onclick="trocarCamera(4)" title="Câmera 4"></div>
+        <div class="camera-btn" style="top:100px; left:200px;" onclick="trocarCamera(5)" title="Câmera 5"></div>
+        <div class="camera-btn" style="top:160px; left:80px;" onclick="trocarCamera(6)" title="Câmera 6"></div>
+        <div class="camera-btn" style="top:160px; left:220px;" onclick="trocarCamera(7)" title="Câmera 7"></div>
       </div>
       <div id="cameraView">Selecione uma câmera</div>
     </div>
