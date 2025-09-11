@@ -130,6 +130,23 @@
       z-index: 200;
       flex-direction: column;
     }
+    #audioControl {
+      margin-top: 10px;
+      text-align: center;
+    }
+    #audioControl button {
+      background: #222;
+      color: white;
+      border: 2px solid white;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+    #audioControl button:hover {
+      background: #444;
+    }
   </style>
 </head>
 <body>
@@ -157,9 +174,11 @@
           <div class="camera-btn" style="top:55px; left:170px;" onclick="trocarCamera(7)" title="Câmera 7"></div>
       </div>
       <div id="cameraView">Selecione uma câmera</div>
+      <div id="audioControl" style="display:none;">
+        <button onclick="tocarAudio()">🎵 Tocar Áudio</button>
+      </div>
+      <audio id="lureSound" src="audio.mp3"></audio>
     </div>
-  </div>
-
   <!-- Tela de vitória -->
   <div id="vitoria">
     <p>6 AM</p>
@@ -191,11 +210,21 @@
       document.getElementById(aberto ? "somAbrir" : "somFechar").play();
     });
 
-    // trocar câmera
+    let cameraAtual = null;
     function trocarCamera(num) {
       let view = document.getElementById("cameraView");
       view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
+      document.getElementById("audioControl").style.display = "block";
+}
+    function tocarAudio() {
+      const audio = document.getElementById("lureSound");
+      audio.currentTime = 0; // reinicia do começo
+      audio.play();
+    
+      console.log("Áudio tocado na Câmera " + cameraAtual);
+      // Aqui no futuro você pode programar animatronics para irem em direção à cameraAtual
     }
+    
 
     // iniciar jogo
     function iniciarJogo() {
