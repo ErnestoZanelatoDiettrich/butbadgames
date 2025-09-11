@@ -16,6 +16,27 @@
       justify-content: center;
       align-items: flex-end;
     }
+     /* Área das câmeras */
+    #mapa {
+      position: relative;
+      background: url("mapa.png") no-repeat center;
+      background-size: contain;
+      width: 400px;
+      height: 250px;
+      border: 2px solid white;
+      margin-bottom: 20px;
+    }
+
+    /* Botões de câmera */
+    .camera-btn {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid white;
+    }
 
    /* Botão seta estilo FNAF */
     #btnTablet {
@@ -141,6 +162,12 @@
     <div class="screen" id="cameraScreen">
       <img src="https://placekitten.com/800/500" alt="Câmera 1">
     </div>
+  <div id="mapa">
+      <div class="camera-btn" style="top:20px; left:50px;" onclick="trocarCamera('Sala 1')"></div>
+      <div class="camera-btn" style="top:20px; left:200px;" onclick="trocarCamera('Sala 2')"></div>
+      <div class="camera-btn" style="top:100px; left:100px;" onclick="trocarCamera('Corredor')"></div>
+      <div class="camera-btn" style="top:150px; left:250px;" onclick="trocarCamera('Escritório')"></div>
+  </div> 
     <div class="menu">
     </div>
   </div>
@@ -197,23 +224,16 @@
     const cameraScreen = document.getElementById("cameraScreen");
     const somAbrir = document.getElementById("somAbrir");
     const somFechar = document.getElementById("somFechar");
-    const cameras = {
-      1: "https://placekitten.com/800/500",
-      2: "https://placebear.com/800/500",
-      3: "https://picsum.photos/800/500?grayscale"
-    };
-    btn.addEventListener("click", () => {
-      const ativo = tablet.classList.toggle("active");
-      if (ativo) {
-        somAbrir.currentTime = 0; 
-        somAbrir.play();
-      } else {
-        somFechar.currentTime = 0;
-        somFechar.play();
-      }
+    const botao = document.getElementById("abrirTablet");
+    let aberto = false;
+
+    botao.addEventListener("click", () => {
+      aberto = !aberto;
+      tablet.style.bottom = aberto ? "0" : "-100%";
     });
-    function trocarCamera(num) {
-      cameraScreen.innerHTML = `<img src="${cameras[num]}" alt="Câmera ${num}">`;
+
+    function trocarCamera(nome) {
+      document.getElementById("cameraView").innerText = "Câmera: " + nome;
     }
   </script>
 
