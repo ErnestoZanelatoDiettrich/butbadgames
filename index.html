@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Five nights at bad</title>
+  <title>Five Nights at Bad</title>
   <style>
     body {
       margin: 0;
@@ -14,27 +14,23 @@
     }
 
     /* Menu inicial */
-    #menu, #menuopcoes {
+    #menu, #opcoes {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: black;
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 300;
     }
+    #opcoes { display: none; }
 
-    #menu.ativo, #menuopcoes.ativo {
-      display: flex;
-    }
-
-    #menu button, #menuopcoes button {
+    #menu button, #opcoes button {
       padding: 15px 30px;
       font-size: 1.5em;
       cursor: pointer;
-      margin-top: 10px;
     }
 
     /* Área do jogo */
@@ -71,7 +67,6 @@
       height: 160px;
       border: 2px solid white;
     }
-
     .camera-btn {
       position: absolute;
       width: 12px;
@@ -80,7 +75,6 @@
       border-radius: 50%;
       cursor: pointer;
       border: 2px solid white;
-      transition: transform 0.2s;
     }
 
     #cameraView {
@@ -95,12 +89,9 @@
       width: 70%;
       height: 70%;
     }
-
     #cameraView img {
       max-width: 100%;
       max-height: 100%;
-      height: 1000px;
-      width: 800px;
     }
 
     /* Botão do tablet */
@@ -116,12 +107,7 @@
       color: white;
       z-index: 101;
     }
-    #versao {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      font-size: 2em;
-    }
+
     /* Relógio */
     #relogio {
       position: fixed;
@@ -131,7 +117,7 @@
     }
 
     /* Tela de vitória */
-    #vitoria {
+    #vitoria, #gameover {
       display: none;
       position: fixed;
       top: 0; left: 0;
@@ -151,7 +137,6 @@
       margin-top: 10px;
       text-align: center;
     }
-
     #audioControl button {
       background: #222;
       color: white;
@@ -160,26 +145,20 @@
       font-size: 16px;
       cursor: pointer;
       border-radius: 6px;
-      transition: 0.2s;
-    }
-
-    #audioControl button:hover {
-      background: #444;
     }
   </style>
 </head>
 <body>
 
   <!-- Menu inicial -->
-  <div id="menu" class="ativo">
-    <h1>Five Nights at bad</h1>
-    <div id="versao">Versão: Alpha 1.1</div>
+  <div id="menu">
+    <h1>Five Nights at Bad</h1>
     <button onclick="iniciarJogo()">Iniciar</button>
-    <button onclick="opcoesJogo()">Opções</button>
+    <button onclick="abrirOpcoes()">Opções</button>
   </div>
 
-  <!-- Menu de opções -->
-  <div id="menuopcoes">
+  <!-- Opções -->
+  <div id="opcoes">
     <h1>⚙️ Configurações</h1>
     <button onclick="toggleAudio()">Áudio: <span id="statusAudio">Ligado</span></button>
     <button onclick="alterarGrafico()">Gráficos: <span id="statusGrafico">Alto</span></button>
@@ -194,13 +173,13 @@
     <!-- Tablet -->
     <div id="tablet">
       <div id="mapa">
-        <div class="camera-btn" style="top:30px; left:25px;" onclick="trocarCamera(1)" title="Câmera 1"></div>
-        <div class="camera-btn" style="top:25px; left:110px;" onclick="trocarCamera(2)" title="Câmera 2"></div>
-        <div class="camera-btn" style="top:25px; left:190px;" onclick="trocarCamera(3)" title="Câmera 3"></div>
-        <div class="camera-btn" style="top:60px; left:70px;" onclick="trocarCamera(4)" title="Câmera 4"></div>
-        <div class="camera-btn" style="top:70px; left:125px;" onclick="trocarCamera(5)" title="Câmera 5"></div>
-        <div class="camera-btn" style="top:100px; left:70px;" onclick="trocarCamera(6)" title="Câmera 6"></div>
-        <div class="camera-btn" style="top:55px; left:170px;" onclick="trocarCamera(7)" title="Câmera 7"></div>
+        <div class="camera-btn" style="top:30px; left:25px;" onclick="trocarCamera(1)"></div>
+        <div class="camera-btn" style="top:25px; left:110px;" onclick="trocarCamera(2)"></div>
+        <div class="camera-btn" style="top:25px; left:190px;" onclick="trocarCamera(3)"></div>
+        <div class="camera-btn" style="top:60px; left:70px;" onclick="trocarCamera(4)"></div>
+        <div class="camera-btn" style="top:70px; left:125px;" onclick="trocarCamera(5)"></div>
+        <div class="camera-btn" style="top:100px; left:70px;" onclick="trocarCamera(6)"></div>
+        <div class="camera-btn" style="top:55px; left:170px;" onclick="trocarCamera(7)"></div>
       </div>
       <div id="cameraView">Selecione uma câmera</div>
       <div id="audioControl" style="display:none;">
@@ -216,10 +195,17 @@
     <button onclick="location.reload()">Voltar ao menu</button>
   </div>
 
+  <!-- Tela de Game Over -->
+  <div id="gameover">
+    <p>GAME OVER</p>
+    <button onclick="location.reload()">Tentar de novo</button>
+  </div>
+
   <!-- Sons -->
   <audio id="somAbrir" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somVitoria" src="FNAF - 6 AM sound.mp3"></audio>
+  <audio id="somGameOver" src="jumpscare.mp3"></audio>
 
   <script>
     const menu = document.getElementById("menu");
@@ -227,17 +213,16 @@
     const tablet = document.getElementById("tablet");
     const botaoTablet = document.getElementById("abrirTablet");
     const vitoria = document.getElementById("vitoria");
+    const gameover = document.getElementById("gameover");
     const relogio = document.getElementById("relogio");
-    const opcoes = document.getElementById("menuopcoes");
+    const opcoes = document.getElementById("opcoes");
     const statusAudio = document.getElementById("statusAudio");
-    const statusGrafico = document.getElementById("statusGrafico");
+
     let aberto = false;
     let hora = 0;
     let horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
     let timer;
-    let audioLigado = true;
-    let grafico = "Alto";
-    let cameraAtual = null;
+    let animatronic = { pos: 1 }; // começa na câmera 1
 
     // abrir/fechar tablet
     botaoTablet.addEventListener("click", () => {
@@ -246,26 +231,37 @@
       document.getElementById(aberto ? "somAbrir" : "somFechar").play();
     });
 
+    let cameraAtual = null;
     function trocarCamera(num) {
+      cameraAtual = num;
       let view = document.getElementById("cameraView");
       view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
       document.getElementById("audioControl").style.display = "block";
-      cameraAtual = num;
+
+      if (animatronic.pos === num) {
+        console.log("Você vê o animatronic na câmera " + num);
+      }
     }
 
     function tocarAudio() {
       const audio = document.getElementById("lureSound");
-      if (audioLigado) {
-        audio.currentTime = 0;
-        audio.play();
-        console.log("Áudio tocado na Câmera " + cameraAtual);
+      audio.currentTime = 0;
+      audio.play();
+      console.log("Áudio tocado na Câmera " + cameraAtual);
+
+      // chance de atrair animatronic
+      if (Math.random() < 0.7) {
+        animatronic.pos = cameraAtual;
+        console.log("Animatronic foi atraído para a câmera " + cameraAtual);
       }
     }
 
+    // iniciar jogo
     function iniciarJogo() {
-      menu.classList.remove("ativo");
+      menu.style.display = "none";
       jogo.style.display = "block";
       vitoria.style.display = "none";
+      gameover.style.display = "none";
       hora = 0;
       relogio.innerText = horas[hora];
 
@@ -277,17 +273,20 @@
         if (hora === horas.length - 1) {
           fimDoJogo();
         }
-      }, 5000); // cada hora dura 5s
+      }, 10000); // cada hora = 10s
+
+      // movimento do animatronic
+      setInterval(moverAnimatronic, 7000);
     }
 
-    function opcoesJogo() {
-      menu.classList.remove("ativo");
-      opcoes.classList.add("ativo");
+    function abrirOpcoes() {
+      menu.style.display = "none";
+      opcoes.style.display = "flex";
     }
 
     function voltarMenu() {
-      opcoes.classList.remove("ativo");
-      menu.classList.add("ativo");
+      opcoes.style.display = "none";
+      menu.style.display = "flex";
     }
 
     function toggleAudio() {
@@ -295,17 +294,25 @@
       statusAudio.textContent = audioLigado ? "Ligado" : "Desligado";
     }
 
-    function alterarGrafico() {
-      if (grafico === "Alto") grafico = "Médio";
-      else if (grafico === "Médio") grafico = "Baixo";
-      else grafico = "Alto";
-      statusGrafico.textContent = grafico;
-    }
-
     function fimDoJogo() {
       clearInterval(timer);
       document.getElementById("somVitoria").play();
       vitoria.style.display = "flex";
+    }
+
+    function moverAnimatronic() {
+      if (animatronic.pos < 7) {
+        animatronic.pos++;
+      } else {
+        gameOver();
+      }
+      console.log("Animatronic agora está na câmera " + animatronic.pos);
+    }
+
+    function gameOver() {
+      clearInterval(timer);
+      document.getElementById("somGameOver").play();
+      gameover.style.display = "flex";
     }
   </script>
 </body>
