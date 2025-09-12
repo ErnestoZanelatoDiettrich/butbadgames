@@ -116,7 +116,12 @@
       color: white;
       z-index: 101;
     }
-
+    #versao {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      font-size: 2em;
+    }
     /* Relógio */
     #relogio {
       position: fixed;
@@ -173,6 +178,9 @@
   </div>
 
   <!-- Menu de opções -->
+  <div id="menu">
+        <div id="versao">Versão: Alpha 1.1</div>
+  </div>
   <div id="menuopcoes">
     <h1>⚙️ Configurações</h1>
     <button onclick="toggleAudio()">Áudio: <span id="statusAudio">Ligado</span></button>
