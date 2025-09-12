@@ -171,7 +171,12 @@
     <button onclick="opçoesJogo()">Opções</button>
 
   </div>
-
+   <div id="opcoes" class="tela">
+    <h1>⚙️ Configurações</h1>
+    <button onclick="toggleAudio()">Áudio: <span id="statusAudio">Ligado</span></button>
+    <button onclick="alterarGrafico()">Gráficos: <span id="statusGrafico">Alto</span></button>
+    <button onclick="voltarMenu()">Voltar</button>
+  </div>
   <!-- Área do jogo -->
   <div id="jogo">
     <div id="relogio">12 AM</div>
@@ -212,7 +217,8 @@
     const botaoTablet = document.getElementById("abrirTablet");
     const vitoria = document.getElementById("vitoria");
     const relogio = document.getElementById("relogio");
-
+    const opcoes = document.getElementById("opcoes");
+    const statusAudio = document.getElementById("statusAudio");
     let aberto = false;
     let hora = 0;
     let horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
@@ -259,11 +265,18 @@
         }
       }, 100000000); // cada hora dura 5s (ajuste se quiser)
     }
-   function opçoesJogo() {
-      menu.style.display = "none";
-      menuopçoes.style.display = "block";
-      vitoria.style.display = "none";
+   function abrirOpcoes() {
+      menu.classList.remove("ativo");
+      opcoes.classList.add("ativo");
+    }
     
+    function voltarMenu() {
+      opcoes.classList.remove("ativo");
+      menu.classList.add("ativo");
+    }
+     function toggleAudio() {
+      audioLigado = !audioLigado;
+      statusAudio.textContent = audioLigado ? "Ligado" : "Desligado";
     }
 
     // fim do jogo
