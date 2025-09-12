@@ -301,7 +301,18 @@
       audioLigado = !audioLigado;
       statusAudio.textContent = audioLigado ? "Ligado" : "Desligado";
     }
+    
+    function toggleAudio() {
+      audioLigado = !audioLigado;
+      statusAudio.textContent = audioLigado ? "Ligado" : "Desligado";
+    }
 
+    function alterarGrafico() {
+      if (grafico === "Alto") grafico = "Médio";
+      else if (grafico === "Médio") grafico = "Baixo";
+      else grafico = "Alto";
+      statusGrafico.textContent = grafico;
+    }
     function fimDoJogo() {
       clearInterval(timer);
       document.getElementById("somVitoria").play();
