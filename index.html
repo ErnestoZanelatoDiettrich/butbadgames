@@ -281,7 +281,7 @@
         if (hora === horas.length - 1) {
           fimDoJogo();
         }
-      }, 10000); // cada hora = 10s
+      }, 100000000); // cada hora = 10s
 
       // movimento do animatronic
       setInterval(moverAnimatronic, 7000);
@@ -315,7 +315,7 @@
     }
 
     function moverAnimatronic() {
-      if (animatronic.pos < 7) {
+      if (animatronic.pos < 1000) {
         animatronic.pos++;
       } else {
         gameOver();
