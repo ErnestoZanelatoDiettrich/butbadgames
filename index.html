@@ -166,6 +166,20 @@
       z-index: 101;
       top: 100px;
     }
+     
+     #abrirEsquerda {
+      position: fixed;
+      bottom: 20px;
+      left: 5%;
+      transform: rotate(180deg);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2em;
+      color: white;
+      z-index: 101;
+      top: 100px;
+    }
   </style>
 </head>
 <body>
@@ -191,6 +205,8 @@
     <div id="relogio">12 AM</div>
     <button id="abrirTablet">▲</button>
     <button id="abrirDireita">▲</button>
+    <button id="abrirEsquerda">▲</button>
+
     <!-- Tablet -->
     <div id="tablet">
       <div id="mapa">
@@ -233,7 +249,8 @@
     const jogo = document.getElementById("jogo");
     const tablet = document.getElementById("tablet");
     const botaoTablet = document.getElementById("abrirTablet");
-    const botaoOharDireita = document.getElementById("abrirDireita");
+    const botaoOlharDireita = document.getElementById("abrirDireita");
+    const botaoOlharEsquerda = document.getElementById("abrirEsquerda");
     const vitoria = document.getElementById("vitoria");
     const gameover = document.getElementById("gameover");
     const relogio = document.getElementById("relogio");
@@ -254,18 +271,32 @@
       document.getElementById(aberto ? "somAbrir" : "somFechar").play();
     });
 
-      botaoOharDireita.addEventListener("click", () => {
-      if (fundoAtivo === 1) {
-        document.body.style.background = "url('fundo2.jpg') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
-        fundoAtivo = 2;
-      } else {
-        document.body.style.background = "url('fundo1.jpg') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
-        fundoAtivo = 1;
-      }
-    });
+    
+  // Olhar para a direita
+  botaoOlharDireita.addEventListener("click", () => {
+    if (fundoAtivo !== 2) {
+      document.body.style.background = "url('fds direita.png') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+      fundoAtivo = 2;
+    }
+  });
 
+  // Olhar para a esquerda
+  botaoOlharEsquerda.addEventListener("click", () => {
+    if (fundoAtivo !== 3) {
+      document.body.style.background = "url('fds esquerda.png') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+      fundoAtivo = 3;
+    }
+  });
+
+  // Voltar para frente (se quiser adicionar lógica depois)
+  function olharFrente() {
+    document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
+    document.body.style.backgroundSize = "cover";
+    fundoAtivo = 1;
+  }
+    });
     let cameraAtual = null;
     function trocarCamera(num) {
       cameraAtual = num;
