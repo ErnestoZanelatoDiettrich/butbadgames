@@ -233,6 +233,7 @@
     const jogo = document.getElementById("jogo");
     const tablet = document.getElementById("tablet");
     const botaoTablet = document.getElementById("abrirTablet");
+    const botaoOharDireita = document.getElementById("abrirDireita");
     const vitoria = document.getElementById("vitoria");
     const gameover = document.getElementById("gameover");
     const relogio = document.getElementById("relogio");
@@ -244,12 +245,25 @@
     let horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
     let timer;
     let animatronic = { pos: 1 }; // começa na câmera 1
+    let fundoAtivo = 1;
 
     // abrir/fechar tablet
     botaoTablet.addEventListener("click", () => {
       aberto = !aberto;
       tablet.style.bottom = aberto ? "0" : "-100%";
       document.getElementById(aberto ? "somAbrir" : "somFechar").play();
+    });
+
+      botaoOharDireita.addEventListener("click", () => {
+      if (fundoAtivo === 1) {
+        document.body.style.background = "url('fundo2.jpg') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 2;
+      } else {
+        document.body.style.background = "url('fundo1.jpg') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 1;
+      }
     });
 
     let cameraAtual = null;
