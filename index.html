@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -263,6 +263,8 @@
     let timer;
     let animatronic = { pos: 1 }; // começa na câmera 1
     let fundoAtivo = 1;
+    let audioLigado = true; // CORREÇÃO: variável não existia
+    let grafico = "Alto";   // CORREÇÃO: variável não existia
 
     // abrir/fechar tablet
     botaoTablet.addEventListener("click", () => {
@@ -271,25 +273,24 @@
       document.getElementById(aberto ? "somAbrir" : "somFechar").play();
     });
 
-    
-  // Olhar para a direita
-  botaoOlharDireita.addEventListener("click", () => {
-    if (fundoAtivo !== 2) {
-      document.body.style.background = "url('fds direita.png') no-repeat center center fixed";
-      document.body.style.backgroundSize = "cover";
-      fundoAtivo = 2;
-    }
-  });
-
-  // Olhar para a esquerda
-  botaoOlharEsquerda.addEventListener("click", () => {
-    if (fundoAtivo !== 3) {
-      document.body.style.background = "url('fds esquerda.png') no-repeat center center fixed";
-      document.body.style.backgroundSize = "cover";
-      fundoAtivo = 3;
-    }
-  });
+    // Olhar para a direita
+    botaoOlharDireita.addEventListener("click", () => {
+      if (fundoAtivo !== 2) {
+        document.body.style.background = "url('fds direita.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 2;
+      }
     });
+
+    // Olhar para a esquerda
+    botaoOlharEsquerda.addEventListener("click", () => {
+      if (fundoAtivo !== 3) {
+        document.body.style.background = "url('fds esquerda.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 3;
+      }
+    });
+
     let cameraAtual = null;
     function trocarCamera(num) {
       cameraAtual = num;
@@ -330,7 +331,7 @@
         if (hora === horas.length - 1) {
           fimDoJogo();
         }
-      }, 100000000); // cada hora = 10s
+      }, 10000); // CORREÇÃO: estava 100000000 (muito alto), cada hora = 10s
 
       // movimento do animatronic
       setInterval(moverAnimatronic, 7000);
@@ -380,3 +381,4 @@
   </script>
 </body>
 </html>
+
