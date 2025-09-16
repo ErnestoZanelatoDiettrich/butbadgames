@@ -289,13 +289,6 @@
       fundoAtivo = 3;
     }
   });
-
-  // Voltar para frente (se quiser adicionar lógica depois)
-  function olharFrente() {
-    document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
-    document.body.style.backgroundSize = "cover";
-    fundoAtivo = 1;
-  }
     });
     let cameraAtual = null;
     function trocarCamera(num) {
@@ -308,7 +301,6 @@
         console.log("Você vê o animatronic na câmera " + num);
       }
     }
-
     function tocarAudio() {
       const audio = document.getElementById("lureSound");
       audio.currentTime = 0;
@@ -321,7 +313,6 @@
         console.log("Animatronic foi atraído para a câmera " + cameraAtual);
       }
     }
-
     // iniciar jogo
     function iniciarJogo() {
       menu.style.display = "none";
