@@ -265,31 +265,34 @@
     let fundoAtivo = 1;
     let audioLigado = true; // CORREÇÃO: variável não existia
     let grafico = "Alto";   // CORREÇÃO: variável não existia
-
+    botaoOlharEsquerda.style.display = "none";
     // abrir/fechar tablet
     botaoTablet.addEventListener("click", () => {
       aberto = !aberto;
       tablet.style.bottom = aberto ? "0" : "-100%";
       document.getElementById(aberto ? "somAbrir" : "somFechar").play();
     });
-
-    // Olhar para a direita
+    
     botaoOlharDireita.addEventListener("click", () => {
-      if (fundoAtivo !== 2) {
-        document.body.style.background = "url('fds direita.png') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
-        fundoAtivo = 2;
-      }
-    });
+    if (fundoAtivo !== 2) {
+      document.body.style.background = "url('fds direita.png') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+      fundoAtivo = 2;
+      botaoOlharDireita.style.display = "none";  // esconde o botão da direita
+      botaoOlharEsquerda.style.display = "block"; // mostra o botão da esquerda
+    }
+  });
 
-    // Olhar para a esquerda
-    botaoOlharEsquerda.addEventListener("click", () => {
-      if (fundoAtivo !== 3) {
-        document.body.style.background = "url('fds esquerda.png') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
-        fundoAtivo = 3;
-      }
-    });
+  // Voltar para a tela normal
+  botaoOlharEsquerda.addEventListener("click", () => {
+    if (fundoAtivo !== 1) {
+      document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+      fundoAtivo = 1;
+      botaoOlharDireita.style.display = "block"; // mostra o botão da direita
+      botaoOlharEsquerda.style.display = "none";  // esconde o botão da esquerda
+    }
+  });
 
     let cameraAtual = null;
     function trocarCamera(num) {
