@@ -180,6 +180,19 @@
       z-index: 101;
       top: 100px;
     }
+    #abrirVentilacao {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2em;
+      color: white;
+      z-index: 101;
+      display: none; /* começa escondido */
+    }
   </style>
 </head>
 <body>
@@ -251,6 +264,7 @@
     const botaoTablet = document.getElementById("abrirTablet");
     const botaoOlharDireita = document.getElementById("abrirDireita");
     const botaoOlharEsquerda = document.getElementById("abrirEsquerda");
+    const botaoVentilacao = document.getElementById("abrirVentilacao");
     const vitoria = document.getElementById("vitoria");
     const gameover = document.getElementById("gameover");
     const relogio = document.getElementById("relogio");
@@ -273,13 +287,16 @@
       document.getElementById(aberto ? "somAbrir" : "somFechar").play();
     });
     
-    botaoOlharDireita.addEventListener("click", () => {
+   
+  // Olhar para a direita
+  botaoOlharDireita.addEventListener("click", () => {
     if (fundoAtivo !== 2) {
-      document.body.style.background = "url('visaodireita.png') no-repeat center center fixed";
+      document.body.style.background = "url('fds direita.png') no-repeat center center fixed";
       document.body.style.backgroundSize = "cover";
       fundoAtivo = 2;
-      botaoOlharDireita.style.display = "none";  // esconde o botão da direita
-      botaoOlharEsquerda.style.display = "block"; // mostra o botão da esquerda
+      botaoOlharDireita.style.display = "none";  
+      botaoOlharEsquerda.style.display = "block"; 
+      botaoVentilacao.style.display = "block"; // mostra o botão da ventilação
     }
   });
 
@@ -289,8 +306,21 @@
       document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
       document.body.style.backgroundSize = "cover";
       fundoAtivo = 1;
-      botaoOlharDireita.style.display = "block"; // mostra o botão da direita
-      botaoOlharEsquerda.style.display = "none";  // esconde o botão da esquerda
+      botaoOlharDireita.style.display = "block"; 
+      botaoOlharEsquerda.style.display = "none";  
+      botaoVentilacao.style.display = "none"; // esconde ventilação
+    }
+  });
+
+  // Abrir ventilação
+  botaoVentilacao.addEventListener("click", () => {
+    if (fundoAtivo !== 3) {
+      document.body.style.background = "url('fds ventilacao.png') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+      fundoAtivo = 3;
+      botaoOlharEsquerda.style.display = "block";  
+      botaoOlharDireita.style.display = "none";   
+      botaoVentilacao.style.display = "none"; // esconde o botão pq já está na ventilação
     }
   });
 
