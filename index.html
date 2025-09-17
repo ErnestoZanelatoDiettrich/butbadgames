@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -29,8 +29,63 @@
 
     #menu button, #opcoes button {
       padding: 15px 30px;
-      font-size: 1.5em;
+      font-size: 1.2em;
       cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* Carta (cena inicial) */
+    #carta {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 400;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    #carta .card {
+      background: linear-gradient(#fdf6e3, #f7ecd6);
+      color: #111;
+      width: 70%;
+      max-width: 900px;
+      height: 70%;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #carta .card h2 {
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    #carta .card p {
+      line-height: 1.5;
+      font-size: 1.05em;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    #carta .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    #carta button {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #333;
+      color: white;
+    }
+    #carta button.primary {
+      background: #007bff;
     }
 
     /* Área do jogo */
@@ -94,7 +149,7 @@
       max-height: 100%;
     }
 
-    /* Botão do tablet */
+    /* Botões de interação */
     #abrirTablet {
       position: fixed;
       bottom: 20px;
@@ -107,30 +162,72 @@
       color: white;
       z-index: 101;
     }
+    #abrirDireita {
+      position: fixed;
+      bottom: 20px;
+      right: 8%;
+      transform: rotate(90deg);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2em;
+      color: white;
+      z-index: 101;
+      display: block;
+    }
+    #abrirEsquerda {
+      position: fixed;
+      bottom: 20px;
+      left: 8%;
+      transform: rotate(270deg);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2em;
+      color: white;
+      z-index: 101;
+      display: none; /* começa escondido */
+    }
+    #abrirVentilacao {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      color: white;
+      z-index: 101;
+      display: none; /* começa escondido */
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #fff;
+    }
 
-    /* Relógio */
+    /* Relógio / versão / créditos */
     #relogio {
       position: fixed;
       top: 10px;
       right: 20px;
       font-size: 2em;
     }
-     #versao {
+    #versao {
       position: fixed;
       top: 10px;
-      right: 20px;
-      font-size: 2em;
-       color: red;
+      left: 20px;
+      font-size: 1em;
+      color: red;
     }
-       #creditos {
+    #creditos {
       position: fixed;
-      top: 45px;
-      right: 20px;
-      font-size: 2em;
+      top: 40px;
+      left: 20px;
+      font-size: 1em;
       color: red;
     }
 
-    /* Tela de vitória */
+    /* Tela de vitória / gameover */
     #vitoria, #gameover {
       display: none;
       position: fixed;
@@ -138,7 +235,7 @@
       width: 100%; height: 100%;
       background: black;
       color: white;
-      font-size: 4em;
+      font-size: 3em;
       font-weight: bold;
       display: flex;
       justify-content: center;
@@ -159,47 +256,6 @@
       font-size: 16px;
       cursor: pointer;
       border-radius: 6px;
-    }
-     #abrirDireita {
-      position: fixed;
-      bottom: 20px;
-      right: 0%;
-      transform: rotate(90deg);
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 2em;
-      color: white;
-      z-index: 101;
-      top: 100px;
-    }
-     
-     #abrirEsquerda {
-      position: fixed;
-      bottom: 20px;
-      left: 0%;
-      transform: rotate(270deg);
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 2em;
-      color: white;
-      z-index: 101;
-      top: 100px;
-    }
-    #abrirVentilacao {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: rotate(180deg);
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 2em;
-      color: white;
-      z-index: 101;
-      display: none; /* começa escondido */
-      top: 45%;
     }
   </style>
 </head>
@@ -222,14 +278,39 @@
     <button onclick="voltarMenu()">Voltar</button>
   </div>
 
+  <!-- Carta / cena inicial -->
+  <div id="carta">
+    <div class="card">
+      <h2>Carta do Gerente</h2>
+      <p>
+Você começou hoje como vigia noturno na antiga pizzaria “Bad’s Diner”. Dizem que, depois do expediente, algumas das
+atrações — *animatrônicos* — não ficam tão quietos quanto deveriam.
+
+Sua tarefa:
+- Vigiar as câmeras durante a noite.
+- Usar o tablet para checar as salas.
+- Tocar sons para distrair os animatrônicos quando necessário.
+- Não deixe que cheguem à sua sala.
+
+Boa sorte. Se ouvir algo estranho, não entre em pânico — apenas vigie as câmeras e mantenha a calma.
+      </p>
+      <div class="actions">
+        <button onclick="pularCarta()">Pular</button>
+        <button class="primary" onclick="comecarNoite()">Começar Noite</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Área do jogo -->
   <div id="jogo">
     <div id="relogio">12 AM</div>
+    <div id="versao">Version: Alpha 1.4</div>
+    <div id="creditos">Credits: Ernesto Z.D.</div>
+
     <button id="abrirTablet">▲</button>
     <button id="abrirDireita">▲</button>
     <button id="abrirEsquerda">▲</button>
     <button id="abrirVentilacao">Ventilation</button>
-
 
     <!-- Tablet -->
     <div id="tablet">
@@ -252,7 +333,7 @@
 
   <!-- Tela de vitória -->
   <div id="vitoria">
-    <p>6 AM</p>
+    <p>6 AM — Você Sobreviveu!</p>
     <button onclick="location.reload()">Voltar ao menu</button>
   </div>
 
@@ -269,6 +350,7 @@
   <audio id="somGameOver" src="FNAF 4 Jumpscare Sound Effect.mp3"></audio>
 
   <script>
+    // elementos
     const menu = document.getElementById("menu");
     const jogo = document.getElementById("jogo");
     const tablet = document.getElementById("tablet");
@@ -282,63 +364,74 @@
     const opcoes = document.getElementById("opcoes");
     const statusAudio = document.getElementById("statusAudio");
     const statusGrafico = document.getElementById("statusGrafico");
+    const carta = document.getElementById("carta");
+
+    // estado
     let aberto = false;
     let hora = 0;
-    let horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
-    let timer;
-    let animatronic = { pos: 1 }; // começa na câmera 1
+    const horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
+    let timerInterval = null;
+    let moveInterval = null;
+    let animatronic = { pos: 1 }; // 1..7
     let fundoAtivo = 1;
-    let audioLigado = true; // CORREÇÃO: variável não existia
-    let grafico = "Alto";   // CORREÇÃO: variável não existia
+    let audioLigado = true;
+    let grafico = "Alto";
+    let cameraAtual = null;
+
+    // esconda botão esquerda/ventilação inicialmente
     botaoOlharEsquerda.style.display = "none";
+    botaoVentilacao.style.display = "none";
+
     // abrir/fechar tablet
     botaoTablet.addEventListener("click", () => {
       aberto = !aberto;
       tablet.style.bottom = aberto ? "0" : "-100%";
-      document.getElementById(aberto ? "somAbrir" : "somFechar").play();
+      const idSom = aberto ? "somAbrir" : "somFechar";
+      const som = document.getElementById(idSom);
+      if (som && audioLigado) som.play();
     });
-    
-   
-  // Olhar para a direita
-  botaoOlharDireita.addEventListener("click", () => {
-    if (fundoAtivo !== 2) {
-      document.body.style.background = "url('visaodireita.png') no-repeat center center fixed";
-      document.body.style.backgroundSize = "cover";
-      fundoAtivo = 2;
-      botaoOlharDireita.style.display = "none";  
-      botaoOlharEsquerda.style.display = "block"; 
-      botaoVentilacao.style.display = "block"; // mostra o botão da ventilação
-    }
-  });
 
-  // Voltar para a tela normal
-  botaoOlharEsquerda.addEventListener("click", () => {
-    if (fundoAtivo !== 1) {
-      document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
-      document.body.style.backgroundSize = "cover";
-      fundoAtivo = 1;
-      botaoOlharDireita.style.display = "block"; 
-      botaoOlharEsquerda.style.display = "none";  
-      botaoVentilacao.style.display = "none"; // esconde ventilação
-    }
-  });
+    // olhar direita
+    botaoOlharDireita.addEventListener("click", () => {
+      if (fundoAtivo !== 2) {
+        document.body.style.background = "url('visaodireita.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 2;
+        botaoOlharDireita.style.display = "none";
+        botaoOlharEsquerda.style.display = "block";
+        botaoVentilacao.style.display = "block";
+      }
+    });
 
-  // Abrir ventilação
-  botaoVentilacao.addEventListener("click", () => {
-    if (fundoAtivo !== 3) {
-      document.body.style.background = "url('fds ventilacao.png') no-repeat center center fixed";
-      document.body.style.backgroundSize = "cover";
-      fundoAtivo = 3;
-      botaoOlharEsquerda.style.display = "block";  
-      botaoOlharDireita.style.display = "none";   
-      botaoVentilacao.style.display = "none"; // esconde o botão pq já está na ventilação
-    }
-  });
+    // voltar (frente) / olhar esquerda
+    botaoOlharEsquerda.addEventListener("click", () => {
+      if (fundoAtivo !== 1) {
+        document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 1;
+        botaoOlharDireita.style.display = "block";
+        botaoOlharEsquerda.style.display = "none";
+        botaoVentilacao.style.display = "none";
+      }
+    });
 
-    let cameraAtual = null;
+    // abrir ventilação
+    botaoVentilacao.addEventListener("click", () => {
+      if (fundoAtivo !== 3) {
+        document.body.style.background = "url('fds ventilacao.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 3;
+        // quando na ventilação, manter botão voltar (esquerda) disponível, esconder direita e ventilação
+        botaoOlharEsquerda.style.display = "block";
+        botaoOlharDireita.style.display = "none";
+        botaoVentilacao.style.display = "none";
+      }
+    });
+
+    // troca de câmeras
     function trocarCamera(num) {
       cameraAtual = num;
-      let view = document.getElementById("cameraView");
+      const view = document.getElementById("cameraView");
       view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
       document.getElementById("audioControl").style.display = "block";
 
@@ -346,82 +439,142 @@
         console.log("Você vê o animatronic na câmera " + num);
       }
     }
+
+    // tocar som para atrair
     function tocarAudio() {
       const audio = document.getElementById("lureSound");
-      audio.currentTime = 0;
-      audio.play();
+      if (!audioLigado) return;
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
       console.log("Áudio tocado na Câmera " + cameraAtual);
 
-      // chance de atrair animatronic
-      if (Math.random() < 0.7) {
+      if (cameraAtual != null && Math.random() < 0.7) {
         animatronic.pos = cameraAtual;
         console.log("Animatronic foi atraído para a câmera " + cameraAtual);
       }
     }
-    // iniciar jogo
+
+    // ---- Cena inicial: Carta ----
+    // clicar em Iniciar abre a carta
     function iniciarJogo() {
-      menu.style.display = "none";
+      menu.style.display = "none"; // esconde menu
+      mostrarCarta();
+    }
+
+    function mostrarCarta() {
+      carta.style.display = "flex";
+    }
+
+    // pular carta
+    function pularCarta() {
+      carta.style.display = "none";
+      comecarNoite(); // inicia o jogo direto
+    }
+
+    // quando clicar em "Começar Noite"
+    function comecarNoite() {
+      carta.style.display = "none";
+      startGame(); // começa o jogo real
+    }
+
+    // iniciar o jogo real (relógio, animatronics)
+    function startGame() {
+      // reset estado
       jogo.style.display = "block";
       vitoria.style.display = "none";
       gameover.style.display = "none";
       hora = 0;
+      animatronic.pos = 1;
       relogio.innerText = horas[hora];
+      fundoAtivo = 1;
+      document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+      botaoOlharDireita.style.display = "block";
+      botaoOlharEsquerda.style.display = "none";
+      botaoVentilacao.style.display = "none";
 
-      timer = setInterval(() => {
+      // limpar intervalos anteriores se existirem
+      if (timerInterval) clearInterval(timerInterval);
+      if (moveInterval) clearInterval(moveInterval);
+
+      // duração da hora (em ms) - ajuste pra testar
+      const HORA_MS = 5000; // 5s por hora para testes
+
+      // timer do relógio
+      timerInterval = setInterval(() => {
         hora++;
-        if (hora < horas.length) {
-          relogio.innerText = horas[hora];
-        }
+        if (hora < horas.length) relogio.innerText = horas[hora];
         if (hora === horas.length - 1) {
           fimDoJogo();
         }
-      }, 100000000); //tempo alto para testar o jogo
+      }, HORA_MS);
 
       // movimento do animatronic
-      setInterval(moverAnimatronic, 7000);
+      moveInterval = setInterval(moverAnimatronic, 7000);
     }
 
+    // abrir opções / voltar
     function abrirOpcoes() {
       menu.style.display = "none";
       opcoes.style.display = "flex";
     }
-
     function voltarMenu() {
       opcoes.style.display = "none";
       menu.style.display = "flex";
     }
 
+    // toggles
     function toggleAudio() {
       audioLigado = !audioLigado;
       statusAudio.textContent = audioLigado ? "Ligado" : "Desligado";
     }
-
     function alterarGrafico() {
       if (grafico === "Alto") grafico = "Médio";
       else if (grafico === "Médio") grafico = "Baixo";
       else grafico = "Alto";
       statusGrafico.textContent = grafico;
     }
+
+    // fim de noite (vitoria)
     function fimDoJogo() {
-      clearInterval(timer);
-      document.getElementById("somVitoria").play();
+      if (timerInterval) clearInterval(timerInterval);
+      if (moveInterval) clearInterval(moveInterval);
+      if (audioLigado) document.getElementById("somVitoria").play();
       vitoria.style.display = "flex";
     }
 
+    // mover animatronic (simples)
     function moverAnimatronic() {
-      if (animatronic.pos < 1000) {
+      // Se animatronic estiver antes da câmera 7, avança; se chegar na 7 -> game over
+      if (animatronic.pos < 7) {
         animatronic.pos++;
+        console.log("Animatronic moveu para a câmera " + animatronic.pos);
+        // se estiver visível no monitor atual, você vê ele (extra)
+        if (cameraAtual === animatronic.pos) {
+          console.log("Você vê o animatronic agora!");
+        }
       } else {
         gameOver();
       }
-      console.log("Animatronic agora está na câmera " + animatronic.pos);
     }
 
     function gameOver() {
-      clearInterval(timer);
-      document.getElementById("somGameOver").play();
+      if (timerInterval) clearInterval(timerInterval);
+      if (moveInterval) clearInterval(moveInterval);
+      if (audioLigado) document.getElementById("somGameOver").play();
       gameover.style.display = "flex";
     }
+
+    // garantir que ao recarregar, volta ao menu
+    window.addEventListener("load", () => {
+      menu.style.display = "flex";
+      jogo.style.display = "none";
+      carta.style.display = "none";
+      vitoria.style.display = "none";
+      gameover.style.display = "none";
+    });
   </script>
 </body>
 </html>
