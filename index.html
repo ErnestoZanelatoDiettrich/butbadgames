@@ -373,7 +373,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     const carta = document.getElementById("carta");
     const menuMusic = document.getElementById("menuMusic");
     const gameAmbience = document.getElementById("gameAmbience");
-
+    let audioLigado = true;
     // estado
     let aberto = false;
     let hora = 0;
@@ -382,9 +382,11 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     let moveInterval = null;
     let animatronic = { pos: 1 }; // 1..7
     let fundoAtivo = 1;
-    let audioLigado = true;
     let grafico = "Alto";
     let cameraAtual = null;
+       window.onload = () => {
+      menuMusic.paused;
+    }
     function tocarMusicaMenu() {
       if (audioLigado && menuMusic.paused) {
         menuMusic.volume = 0.4;
