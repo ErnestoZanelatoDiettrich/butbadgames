@@ -348,6 +348,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   </div>
 
   <!-- Sons -->
+  <audio id="menuMusic" src="menu-theme.mp3" loop></audio>
+  <audio id="gameAmbience" src="game-ambience.mp3" loop></audio>
   <audio id="somAbrir" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somVitoria" src="FNAF - 6 AM sound.mp3"></audio>
@@ -369,6 +371,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     const statusAudio = document.getElementById("statusAudio");
     const statusGrafico = document.getElementById("statusGrafico");
     const carta = document.getElementById("carta");
+    const menuMusic = document.getElementById("menuMusic");
+    const gameAmbience = document.getElementById("gameAmbience");
 
     // estado
     let aberto = false;
@@ -381,7 +385,10 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     let audioLigado = true;
     let grafico = "Alto";
     let cameraAtual = null;
-
+     window.onload = () => {
+      menuMusic.volume = 0.4;
+      menuMusic.play();
+    }
     // esconda botão esquerda/ventilação inicialmente
     botaoOlharEsquerda.style.display = "none";
     botaoVentilacao.style.display = "none";
@@ -490,6 +497,9 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       vitoria.style.display = "none";
       gameover.style.display = "none";
       hora = 0;
+      menuMusic.pause();
+      gameAmbience.volume = 0.5;
+      gameAmbience.play();
       animatronic.pos = 1;
       relogio.innerText = horas[hora];
       fundoAtivo = 1;
@@ -530,10 +540,18 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     }
 
     // toggles
-    function toggleAudio() {
+      function toggleAudio() {
       audioLigado = !audioLigado;
       statusAudio.textContent = audioLigado ? "Ligado" : "Desligado";
+      if (!audioLigado) {
+        menuMusic.pause();
+        gameAmbience.pause();
+      } else {
+        if (menu.style.display !== "none") menuMusic.play();
+        if (jogo.style.display !== "none") gameAmbience.play();
+      }
     }
+
     function alterarGrafico() {
       if (grafico === "Alto") grafico = "Médio";
       else if (grafico === "Médio") grafico = "Baixo";
