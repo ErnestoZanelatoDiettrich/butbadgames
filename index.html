@@ -385,9 +385,11 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     let audioLigado = true;
     let grafico = "Alto";
     let cameraAtual = null;
-     window.onload = () => {
-      menuMusic.volume = 1;
-      menuMusic.play();
+    function tocarMusicaMenu() {
+      if (audioLigado && menuMusic.paused) {
+        menuMusic.volume = 0.4;
+        menuMusic.play().catch(err => console.log("Autoplay bloqueado:", err));
+      }
     }
     // esconda botão esquerda/ventilação inicialmente
     botaoOlharEsquerda.style.display = "none";
@@ -466,7 +468,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         console.log("Animatronic foi atraído para a câmera " + cameraAtual);
       }
     }
-
+    
     // ---- Cena inicial: Carta ----
     // clicar em Iniciar abre a carta
     function iniciarJogo() {
@@ -499,7 +501,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       hora = 0;
       menuMusic.pause();
       gameAmbience.volume = 0.5;
-      gameAmbience.play();
+      if (audioLigado) gameAmbience.play();
       animatronic.pos = 1;
       relogio.innerText = horas[hora];
       fundoAtivo = 1;
@@ -537,6 +539,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     function voltarMenu() {
       opcoes.style.display = "none";
       menu.style.display = "flex";
+      tocarMusicaMenu();
     }
 
     // toggles
