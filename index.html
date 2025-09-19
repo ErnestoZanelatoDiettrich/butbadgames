@@ -358,16 +358,16 @@
   <div id="menu">
     <div id="versao">Version: Alpha 1.6</div>
     <div id="creditos">Credits: Ernesto Z.D.</div>
-    <button onclick="iniciarJogo()">Iniciar</button>
-    <button onclick="abrirOpcoes()">Opções</button>
+    <button onclick="iniciarJogo()">Start</button>
+    <button onclick="abrirOpcoes()">Options</button>
   </div>
 
   <!-- Opções -->
   <div id="opcoes">
     <h1>⚙️ Configurações</h1>
-    <button onclick="toggleAudio()">Áudio: <span id="statusAudio">Ligado</span></button>
-    <button onclick="alterarGrafico()">Gráficos: <span id="statusGrafico">Alto</span></button>
-    <button onclick="voltarMenu()">Voltar</button>
+    <button onclick="toggleAudio()">Audio: <span id="statusAudio">On</span></button>
+    <button onclick="alterarGrafico()">Graphics: <span id="statusGrafico">High</span></button>
+    <button onclick="voltarMenu()">Back</button>
   </div>
 
   <!-- Carta / cena inicial -->
@@ -639,7 +639,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     // toggles
       function toggleAudio() {
       audioLigado = !audioLigado;
-      statusAudio.textContent = audioLigado ? "Ligado" : "Desligado";
+      statusAudio.textContent = audioLigado ? "On" : "Off";
       if (!audioLigado) {
         menuMusic.pause();
         gameAmbience.pause();
@@ -650,9 +650,9 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     }
 
     function alterarGrafico() {
-      if (grafico === "Alto") grafico = "Médio";
-      else if (grafico === "Médio") grafico = "Baixo";
-      else grafico = "Alto";
+      if (grafico === "High") grafico = "Medium";
+      else if (grafico === "Medium") grafico = "Low";
+      else grafico = "High";
       statusGrafico.textContent = grafico;
     }
 
