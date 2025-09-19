@@ -32,8 +32,32 @@
       font-size: 1.2em;
       cursor: pointer;
       margin-top: 10px;
+      
     }
+     #opcoes button {
+      background-color: #1a1a1a; /* Fundo escuro */
+      color: #ff0000; /* Texto vermelho sangue */
+      border: 2px solid #660000; /* Borda vermelho escuro */
+      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px black;
 
+
+     }
+    #opcoes button:hover {
+      background-color: #330000; /* Vermelho bem escuro */
+      color: #ffffff; /* Texto fica branco no hover */
+      border-color: #ff0000;
+      box-shadow: 0 0 10px #ff0000;
+    }
+    #opcoes button:active {
+      transform: scale(0.95);
+    }
     /* Carta (cena inicial) */
     #carta {
       display: none;
