@@ -12,13 +12,15 @@
       color: white;
       overflow: hidden;
     }
-
+    #menu {
+        background: url('tela do menu.png') no-repeat center;
+        background-size: cover;
+    }
     /* Menu inicial */
     #menu, #opcoes {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: black;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -26,7 +28,9 @@
       z-index: 300;
     }
     #opcoes { display: none; }
-
+    #opçoes{
+      background: black;
+    }
     #menu button, #opcoes button {
       padding: 15px 30px;
       font-size: 1.2em;
@@ -263,7 +267,6 @@
 
   <!-- Menu inicial -->
   <div id="menu">
-    <h1>Fear nights</h1>
     <div id="versao">Version: Alpha 1.4</div>
     <div id="creditos">Credits: Ernesto Z.D.</div>
     <button onclick="iniciarJogo()">Iniciar</button>
