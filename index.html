@@ -483,7 +483,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   <button onclick="fecharTV()">Cancelar</button>
   <p id="msgErro" style="color:red; margin-top:10px;"></p>
   </div>
-   <div id="telaEspecial">
+   <div id="telaEspecial" style="display:none;">
     <p>✨ VOCÊ DESBLOQUEOU O SEGREDO! ✨</p>
    </div>
   <!-- Tela de vitória -->
@@ -821,6 +821,9 @@ function verificarCodigo() {
     msgErro.textContent = "Código incorreto!";
   }
 }
+window.onload = () => {
+  document.getElementById("telaEspecial").style.display = "none"; // garante que some no reload
+};
   </script>
 </body>
 </html>
