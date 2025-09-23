@@ -664,20 +664,48 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       vitoria.style.display = "flex";
     }
 
-    // mover animatronic (simples)
-    function moverAnimatronic() {
-      // Se animatronic estiver antes da câmera 7, avança; se chegar na 7 -> game over
-      if (animatronic.pos < 7) {
-        animatronic.pos++;
-        console.log("Animatronic moveu para a câmera " + animatronic.pos);
-        // se estiver visível no monitor atual, você vê ele (extra)
-        if (cameraAtual === animatronic.pos) {
-          console.log("Você vê o animatronic agora!");
-        }
-      } else {
-        gameOver();
+    // Configuração da dificuldade
+// Quanto menor o "dificuldade", mais fácil o animatronic se mover
+const dificuldade = 0.6; // 60% de chance de se mover
+
+// mover animatronic
+function moverAnimatronic() {
+  const chance = Math.random();
+  
+  // Ele só se move se o número for maior que a dificuldade
+  if (chance > dificuldade) {
+    if (animatronic.pos < 7) {
+      animatronic.pos++;
+      console.log("Animatronic moveu para a câmera " + animatronic.pos);
+
+      // Se estiver na mesma câmera que o jogador está vendo
+      if (cameraAtual === animatronic.pos) {
+        console.log("Você vê o animatronic agora!");
       }
+    } else {
+      gameOver(); // chegou na sala → jumpscare
     }
+  } else {
+    console.log("Animatronic ficou parado.");
+  }
+}
+
+// tocar som para atrair
+function tocarAudio() {
+  const audio = document.getElementById("lureSound");
+  if (!audioLigado) return;
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play();
+  }
+  console.log("Áudio tocado na Câmera " + cameraAtual);
+
+  // Chance de atrair para a câmera em que tocou o áudio
+  if (cameraAtual != null && Math.random() < 0.5) {
+    animatronic.pos = cameraAtual;
+    console.log("Animatronic foi atraído para a câmera " + cameraAtual);
+  }
+}
 
     function gameOver() {
       if (timerInterval) clearInterval(timerInterval);
