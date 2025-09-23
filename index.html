@@ -482,10 +482,10 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   <button onclick="verificarCodigo()">Confirmar</button>
   <button onclick="fecharTV()">Cancelar</button>
   <p id="msgErro" style="color:red; margin-top:10px;"></p>
-</div>
+  </div>
    <div id="telaEspecial">
     <p>✨ VOCÊ DESBLOQUEOU O SEGREDO! ✨</p>
-  </div>
+   </div>
   <!-- Tela de vitória -->
   <div id="vitoria">
     <p>6 AM — Você Sobreviveu!</p>
@@ -606,7 +606,14 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       const view = document.getElementById("cameraView");
       view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
       document.getElementById("audioControl").style.display = "block";
-
+    
+      // Mostrar o botão da TV apenas na câmera 3
+      if (num === 3) {
+        btnTV.style.display = "block";
+      } else {
+        btnTV.style.display = "none";
+      }
+    
       if (animatronic.pos === num) {
         console.log("Você vê o animatronic na câmera " + num);
       }
@@ -786,31 +793,34 @@ function tocarAudio() {
       carta.style.display = "none";
       vitoria.style.display = "none";
       gameover.style.display = "none";
+      telaespecial.style.display="none";
+    
     });
-        // Abrir a interação com a TV
-    function abrirTV() {
-      if (cameraAtual === 3) { // garante que só abre na câmera 3
-        tvInteracao.style.display = "flex";
-        msgErro.textContent = "";
-        document.getElementById("codigoInput").value = "";
-      }
-    }
     
-    // Fechar a TV
-    function fecharTV() {
-      tvInteracao.style.display = "none";
-    }
-    
-    // Verificar código
-    function verificarCodigo() {
-      const valor = document.getElementById("codigoInput").value;
-      if (valor === codigoCorreto) {
-        tvInteracao.style.display = "none";
-        telaEspecial.style.display = "flex";
-      } else {
-        msgErro.textContent = "Código incorreto!";
-      }
-    }
+// Abrir a interação com a TV
+function abrirTV() {
+  if (cameraAtual === 3) { // garante que só abre na câmera 3
+    tvInteracao.style.display = "flex";
+    msgErro.textContent = "";
+    document.getElementById("codigoInput").value = "";
+  }
+}
+
+// Fechar a TV
+function fecharTV() {
+  tvInteracao.style.display = "none";
+}
+
+// Verificar código
+function verificarCodigo() {
+  const valor = document.getElementById("codigoInput").value;
+  if (valor === codigoCorreto) {
+    tvInteracao.style.display = "none";
+    telaEspecial.style.display = "flex";
+  } else {
+    msgErro.textContent = "Código incorreto!";
+  }
+}
   </script>
 </body>
 </html>
