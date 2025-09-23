@@ -13,7 +13,7 @@
       color: white;
       overflow: hidden;
     }
-
+  
     /* Menu inicial */
     #menu, #opcoes {
       position: fixed;
@@ -29,10 +29,10 @@
     }
     #opcoes { display: none; }
     #menu button, #opcoes button {
-      background-color: #1a1a1a;
-      color: #ff0000;
-      border: 2px solid #660000;
-      font-family: 'Creepster', sans-serif;
+      background-color: #1a1a1a; /* Fundo escuro */
+      color: #ff0000; /* Texto vermelho sangue */
+      border: 2px solid #660000; /* Borda vermelho escuro */
+      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
       font-size: 20px;
       padding: 10px 25px;
       margin: 10px;
@@ -40,18 +40,29 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-shadow: 1px 1px 3px black;
+
+      
     }
-    #menu button:hover, #opcoes button:hover {
-      background-color: #330000;
-      color: #ffffff;
+     #menu button:hover {
+      background-color: #330000; /* Vermelho bem escuro */
+      color: #ffffff; /* Texto fica branco no hover */
       border-color: #ff0000;
       box-shadow: 0 0 10px #ff0000;
-    }
-    #menu button:active, #opcoes button:active {
+     }
+    #menu button:active {
       transform: scale(0.95);
     }
 
-    /* Carta */
+    #opcoes button:hover {
+      background-color: #330000; /* Vermelho bem escuro */
+      color: #ffffff; /* Texto fica branco no hover */
+      border-color: #ff0000;
+      box-shadow: 0 0 10px #ff0000;
+    }
+    #opcoes button:active {
+      transform: scale(0.95);
+    }
+    /* Carta (cena inicial) */
     #carta {
       display: none;
       position: fixed;
@@ -76,6 +87,33 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
+    }
+    #carta .card h2 {
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    #carta .card p {
+      line-height: 1.5;
+      font-size: 1.05em;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    #carta .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    #carta button {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #333;
+      color: white;
+    }
+    #carta button.primary {
+      background: #007bff;
     }
 
     /* Área do jogo */
@@ -139,7 +177,128 @@
       max-height: 100%;
     }
 
-    /* Relógio / créditos */
+    /* Botões de interação */
+    #abrirTablet {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      z-index: 101;
+      background-color: #1a1a1a; /* Fundo escuro */
+      color: #ff0000; /* Texto vermelho sangue */
+      border: 2px solid #660000; /* Borda vermelho escuro */
+      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px black;
+
+    }
+    #abrirTablet button:hover {
+      background-color: #330000; /* Vermelho bem escuro */
+      color: #ffffff; /* Texto fica branco no hover */
+      border-color: #ff0000;
+      box-shadow: 0 0 10px #ff0000;
+    }
+    #abrirTablet button:active {
+      transform: scale(0.95);
+    }
+    #abrirDireita {
+      position: fixed;
+      bottom: 20px;
+      right: 8%;
+      transform: rotate(90deg);
+      cursor: pointer;
+      z-index: 101;
+      display: block;
+      background-color: #1a1a1a; /* Fundo escuro */
+      color: #ff0000; /* Texto vermelho sangue */
+      border: 2px solid #660000; /* Borda vermelho escuro */
+      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px black;
+
+    }
+    #abrirDireita button:hover {
+      background-color: #330000; /* Vermelho bem escuro */
+      color: #ffffff; /* Texto fica branco no hover */
+      border-color: #ff0000;
+      box-shadow: 0 0 10px #ff0000;
+    }
+    #abrirDireita button:active {
+      transform: scale(0.95);
+    }
+    #abrirEsquerda {
+      position: fixed;
+      bottom: 20px;
+      left: 8%;
+      transform: rotate(270deg);
+      cursor: pointer;
+      font-size: 2em;
+      z-index: 101;
+      display: none; /* começa escondido */
+      background-color: #1a1a1a; /* Fundo escuro */
+      color: #ff0000; /* Texto vermelho sangue */
+      border: 2px solid #660000; /* Borda vermelho escuro */
+      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px black;
+
+    }
+    #abrirEsquerda button:hover {
+      background-color: #330000; /* Vermelho bem escuro */
+      color: #ffffff; /* Texto fica branco no hover */
+      border-color: #ff0000;
+      box-shadow: 0 0 10px #ff0000;
+    }
+    #abrirEsquerda button:active {
+      transform: scale(0.95);
+    }
+    #abrirVentilacao {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      z-index: 101;
+      display: none; /* começa escondido */
+      background-color: #1a1a1a; /* Fundo escuro */
+      color: #ff0000; /* Texto vermelho sangue */
+      border: 2px solid #660000; /* Borda vermelho escuro */
+      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px black;
+
+    }
+    #abrirVentilacao button:hover {
+      background-color: #330000; /* Vermelho bem escuro */
+      color: #ffffff; /* Texto fica branco no hover */
+      border-color: #ff0000;
+      box-shadow: 0 0 10px #ff0000;
+    }
+    #abrirVentilacao button:active {
+      transform: scale(0.95);
+    }
+    /* Relógio / versão / créditos */
     #relogio {
       position: fixed;
       top: 10px;
@@ -161,8 +320,8 @@
       color: red;
     }
 
-    /* Vitória / gameover */
-    #vitoria, #gameover, #jumpscare {
+    /* Tela de vitória / gameover */
+    #vitoria, #gameover {
       display: none;
       position: fixed;
       top: 0; left: 0;
@@ -174,19 +333,28 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 500;
+      z-index: 200;
       flex-direction: column;
     }
 
-    #jumpscare img {
-      max-width: 100%;
-      max-height: 100%;
+    #audioControl {
+      margin-top: 10px;
+      text-align: center;
+    }
+    #audioControl button {
+      background: #222;
+      color: white;
+      border: 2px solid white;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Menu -->
+  <!-- Menu inicial -->
   <div id="menu">
     <div id="versao">Version: Alpha 1.6</div>
     <div id="creditos">Credits: Ernesto Z.D.</div>
@@ -202,11 +370,26 @@
     <button onclick="voltarMenu()">Back</button>
   </div>
 
-  <!-- Carta -->
+  <!-- Carta / cena inicial -->
   <div id="carta">
     <div class="card">
       <h2>Carta do açougue Lomb</h2>
-      <p>Hoje começa seu turno como guarda...</p>
+      <p>
+Hoje começa seu turno como guarda. Aqui está algumas que deve ou não fazer:
+O que não deve fazer:
+- Mexer nos freezers.
+- Entrar na cozinha.
+- Deixar estranhos entrarem.
+- Dormir no turno de trabalho.
+O que deve fazer:
+- Vigiar as câmeras durante a noite.
+- Levar o lixo.
+- Evitar possiveis vandâlos ou ladrões.
+- Cuidar do sistema da ventilação.
+
+
+Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos responsabilizando. Boa sorte!
+      </p>
       <div class="actions">
         <button onclick="pularCarta()">Pular</button>
         <button class="primary" onclick="comecarNoite()">Começar Noite</button>
@@ -225,6 +408,7 @@
     <button id="abrirEsquerda">▲</button>
     <button id="abrirVentilacao">Ventilation</button>
 
+    <!-- Tablet -->
     <div id="tablet">
       <div id="mapa">
         <div class="camera-btn" style="top:30px; left:25px;" onclick="trocarCamera(1)"></div>
@@ -243,141 +427,273 @@
     </div>
   </div>
 
-  <!-- Vitória -->
+  <!-- Tela de vitória -->
   <div id="vitoria">
     <p>6 AM — Você Sobreviveu!</p>
     <button onclick="location.reload()">Voltar ao menu</button>
   </div>
 
-  <!-- Game Over -->
+  <!-- Tela de Game Over -->
   <div id="gameover">
     <p>GAME OVER</p>
     <button onclick="location.reload()">Tentar de novo</button>
   </div>
 
-  <!-- Jumpscare -->
-  <div id="jumpscare">
-    <img src="jumpscare.gif" alt="Jumpscare">
-  </div>
-
   <!-- Sons -->
   <audio id="menuMusic" src="Piggy_ Hornz Official Theme _ .mp3" loop></audio>
   <audio id="gameAmbience" src="game-ambience.mp3" loop></audio>
+  <audio id="somAbrir" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
+  <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somVitoria" src="FNAF - 6 AM sound.mp3"></audio>
   <audio id="somGameOver" src="FNAF 4 Jumpscare Sound Effect.mp3"></audio>
 
   <script>
+    // elementos
     const menu = document.getElementById("menu");
     const jogo = document.getElementById("jogo");
-    const carta = document.getElementById("carta");
+    const tablet = document.getElementById("tablet");
+    const botaoTablet = document.getElementById("abrirTablet");
+    const botaoOlharDireita = document.getElementById("abrirDireita");
+    const botaoOlharEsquerda = document.getElementById("abrirEsquerda");
+    const botaoVentilacao = document.getElementById("abrirVentilacao");
     const vitoria = document.getElementById("vitoria");
     const gameover = document.getElementById("gameover");
-    const jumpscare = document.getElementById("jumpscare");
     const relogio = document.getElementById("relogio");
+    const opcoes = document.getElementById("opcoes");
+    const statusAudio = document.getElementById("statusAudio");
+    const statusGrafico = document.getElementById("statusGrafico");
+    const carta = document.getElementById("carta");
     const menuMusic = document.getElementById("menuMusic");
     const gameAmbience = document.getElementById("gameAmbience");
     let audioLigado = true;
-
+    // estado
+    let aberto = false;
     let hora = 0;
     const horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
     let timerInterval = null;
     let moveInterval = null;
-    let animatronic = { pos: 1 };
+    let animatronic = { pos: 1 }; // 1..7
+    let fundoAtivo = 1;
+    let grafico = "Alto";
     let cameraAtual = null;
+       window.onload = () => {
+      menuMusic.paused;
+    }
+    function tocarMusicaMenu() {
+      if (audioLigado && menuMusic.paused) {
+        menuMusic.volume = 0.4;
+        menuMusic.play().catch(err => console.log("Autoplay bloqueado:", err));
+      }
+    }
+    // esconda botão esquerda/ventilação inicialmente
+    botaoOlharEsquerda.style.display = "none";
+    botaoVentilacao.style.display = "none";
 
-    // dificuldade
-    const dificuldade = 0.6;
+    // abrir/fechar tablet
+    botaoTablet.addEventListener("click", () => {
+      aberto = !aberto;
+      tablet.style.bottom = aberto ? "0" : "-100%";
+      const idSom = aberto ? "somAbrir" : "somFechar";
+      const som = document.getElementById(idSom);
+      if (som && audioLigado) som.play();
+    });
 
-    // trocar câmera
+    // olhar direita
+    botaoOlharDireita.addEventListener("click", () => {
+      if (fundoAtivo !== 2) {
+        document.body.style.background = "url('visaodireita.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 2;
+        botaoOlharDireita.style.display = "none";
+        botaoOlharEsquerda.style.display = "block";
+        botaoVentilacao.style.display = "block";
+      }
+    });
+
+    // voltar (frente) / olhar esquerda
+    botaoOlharEsquerda.addEventListener("click", () => {
+      if (fundoAtivo !== 1) {
+        document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 1;
+        botaoOlharDireita.style.display = "block";
+        botaoOlharEsquerda.style.display = "none";
+        botaoVentilacao.style.display = "none";
+      }
+    });
+
+    // abrir ventilação
+    botaoVentilacao.addEventListener("click", () => {
+      if (fundoAtivo !== 3) {
+        document.body.style.background = "url('fds ventilacao.png') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
+        fundoAtivo = 3;
+        // quando na ventilação, manter botão voltar (esquerda) disponível, esconder direita e ventilação
+        botaoOlharEsquerda.style.display = "block";
+        botaoOlharDireita.style.display = "none";
+        botaoVentilacao.style.display = "none";
+      }
+    });
+
+    // troca de câmeras
     function trocarCamera(num) {
       cameraAtual = num;
       const view = document.getElementById("cameraView");
       view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
       document.getElementById("audioControl").style.display = "block";
-      if (animatronic.pos === num) console.log("Você vê o animatronic!");
+
+      if (animatronic.pos === num) {
+        console.log("Você vê o animatronic na câmera " + num);
+      }
     }
 
-    // atrair com áudio
+    // tocar som para atrair
     function tocarAudio() {
       const audio = document.getElementById("lureSound");
       if (!audioLigado) return;
-      audio.currentTime = 0;
-      audio.play();
-      if (cameraAtual != null && Math.random() < 0.5) {
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+      console.log("Áudio tocado na Câmera " + cameraAtual);
+
+      if (cameraAtual != null && Math.random() < 0.7) {
         animatronic.pos = cameraAtual;
         console.log("Animatronic foi atraído para a câmera " + cameraAtual);
       }
     }
-
-    // mover animatronic
-    function moverAnimatronic() {
-      const chance = Math.random();
-      if (chance > dificuldade) {
-        if (animatronic.pos < 7) {
-          animatronic.pos++;
-          console.log("Animatronic moveu para a câmera " + animatronic.pos);
-        } else {
-          gameOver();
-        }
-      } else {
-        console.log("Animatronic ficou parado.");
-      }
+    
+    // ---- Cena inicial: Carta ----
+    // clicar em Iniciar abre a carta
+    function iniciarJogo() {
+      menu.style.display = "none"; // esconde menu
+      mostrarCarta();
     }
 
-    // iniciar jogo
-    function iniciarJogo() {
-      menu.style.display = "none";
+    function mostrarCarta() {
       carta.style.display = "flex";
     }
 
+    // pular carta
     function pularCarta() {
       carta.style.display = "none";
-      comecarNoite();
-    }
-    function comecarNoite() {
-      carta.style.display = "none";
-      startGame();
+      comecarNoite(); // inicia o jogo direto
     }
 
+    // quando clicar em "Começar Noite"
+    function comecarNoite() {
+      carta.style.display = "none";
+      startGame(); // começa o jogo real
+    }
+
+    // iniciar o jogo real (relógio, animatronics)
     function startGame() {
+      // reset estado
       jogo.style.display = "block";
+      vitoria.style.display = "none";
+      gameover.style.display = "none";
       hora = 0;
       menuMusic.pause();
+      gameAmbience.volume = 0.5;
       if (audioLigado) gameAmbience.play();
       animatronic.pos = 1;
       relogio.innerText = horas[hora];
+      fundoAtivo = 1;
+      document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
+      document.body.style.backgroundSize = "cover";
+      botaoOlharDireita.style.display = "block";
+      botaoOlharEsquerda.style.display = "none";
+      botaoVentilacao.style.display = "none";
 
+      // limpar intervalos anteriores se existirem
       if (timerInterval) clearInterval(timerInterval);
       if (moveInterval) clearInterval(moveInterval);
 
-      const HORA_MS = 5000;
+      // duração da hora (em ms) - ajuste pra testar
+      const HORA_MS = 5000; // 5s por hora para testes
+
+      // timer do relógio
       timerInterval = setInterval(() => {
         hora++;
         if (hora < horas.length) relogio.innerText = horas[hora];
-        if (hora === horas.length - 1) fimDoJogo();
+        if (hora === horas.length - 1) {
+          fimDoJogo();
+        }
       }, HORA_MS);
 
+      // movimento do animatronic
       moveInterval = setInterval(moverAnimatronic, 7000);
     }
 
+    // abrir opções / voltar
+    function abrirOpcoes() {
+      menu.style.display = "none";
+      opcoes.style.display = "flex";
+    }
+    function voltarMenu() {
+      opcoes.style.display = "none";
+      menu.style.display = "flex";
+      tocarMusicaMenu();
+    }
+
+    // toggles
+      function toggleAudio() {
+      audioLigado = !audioLigado;
+      statusAudio.textContent = audioLigado ? "On" : "Off";
+      if (!audioLigado) {
+        menuMusic.pause();
+        gameAmbience.pause();
+      } else {
+        if (menu.style.display !== "none") menuMusic.play();
+        if (jogo.style.display !== "none") gameAmbience.play();
+      }
+    }
+
+    function alterarGrafico() {
+      if (grafico === "High") grafico = "Medium";
+      else if (grafico === "Medium") grafico = "Low";
+      else grafico = "High";
+      statusGrafico.textContent = grafico;
+    }
+
+    // fim de noite (vitoria)
     function fimDoJogo() {
-      clearInterval(timerInterval);
-      clearInterval(moveInterval);
+      if (timerInterval) clearInterval(timerInterval);
+      if (moveInterval) clearInterval(moveInterval);
       if (audioLigado) document.getElementById("somVitoria").play();
       vitoria.style.display = "flex";
     }
 
-    function gameOver() {
-      clearInterval(timerInterval);
-      clearInterval(moveInterval);
-      if (audioLigado) document.getElementById("somGameOver").play();
-      jumpscare.style.display = "flex";
-      setTimeout(() => {
-        jumpscare.style.display = "none";
-        gameover.style.display = "flex";
-      }, 3000);
+    // mover animatronic (simples)
+    function moverAnimatronic() {
+      // Se animatronic estiver antes da câmera 7, avança; se chegar na 7 -> game over
+      if (animatronic.pos < 7) {
+        animatronic.pos++;
+        console.log("Animatronic moveu para a câmera " + animatronic.pos);
+        // se estiver visível no monitor atual, você vê ele (extra)
+        if (cameraAtual === animatronic.pos) {
+          console.log("Você vê o animatronic agora!");
+        }
+      } else {
+        gameOver();
+      }
     }
+
+    function gameOver() {
+      if (timerInterval) clearInterval(timerInterval);
+      if (moveInterval) clearInterval(moveInterval);
+      if (audioLigado) document.getElementById("somGameOver").play();
+      gameover.style.display = "flex";
+    }
+
+    // garantir que ao recarregar, volta ao menu
+    window.addEventListener("load", () => {
+      menu.style.display = "flex";
+      jogo.style.display = "none";
+      carta.style.display = "none";
+      vitoria.style.display = "none";
+      gameover.style.display = "none";
+    });
   </script>
 </body>
 </html>
-
