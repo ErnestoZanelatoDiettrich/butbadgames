@@ -597,7 +597,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const btnTV = document.getElementById("btnTV");
   const tvInteracao = document.getElementById("tvInteracao");
   const telaEspecial = document.getElementById("telaEspecial");
-  const carta2 = document.getElemetntById("carta2");
+  const carta2 = document.getElementById("carta2"); // corrigido aqui
   const msgErro = document.getElementById("msgErro");
   let cameraAtual = null;
   const codigoCorreto = "0642";
@@ -863,8 +863,8 @@ function tocarAudio() {
       carta.style.display = "none";
       vitoria.style.display = "none";
       gameover.style.display = "none";
-      telaEspecial.style.display="none";
-      carta2.style.display="none";
+      telaEspecial.style.display = "none";
+      carta2.style.display = "none";
     
     });
     
@@ -881,23 +881,23 @@ function abrirTV() {
 function fecharTV() {
   tvInteracao.style.display = "none";
 }
-    
-    function mostrarCarta2() {
-      carta2.style.display = "flex";
-    }
-// pular carta
-    function fecharCarta() {
-      carta2.style.display = "none";
-    }
+
 // Verificar código
 function verificarCodigo() {
   const valor = document.getElementById("codigoInput").value;
   if (valor === codigoCorreto) {
     tvInteracao.style.display = "none";
     telaEspecial.style.display = "flex";
+    carta2.style.display = "flex";
   } else {
     msgErro.textContent = "Código incorreto!";
   }
+}
+
+// Fechar carta2
+function fecharCarta() {
+  carta2.style.display = "none";
+  telaEspecial.style.display = "none";
 }
 window.onload = () => {
   document.getElementById("telaEspecial").style.display = "none"; // garante que some no reload
