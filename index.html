@@ -115,6 +115,59 @@
     #carta button.primary {
       background: #007bff;
     }
+    /* Carta (cena inicial) */
+    #carta2 {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 400;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    #carta2 .card {
+      background: linear-gradient(#fdf6e3, #f7ecd6);
+      color: #111;
+      width: 70%;
+      max-width: 900px;
+      height: 70%;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #carta2 .card h2 {
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    #carta2 .card p {
+      line-height: 1.5;
+      font-size: 1.05em;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    #carta2 .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    #carta2 button {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #333;
+      color: white;
+    }
+    #carta2 button.primary {
+      background: #007bff;
+    }
 
     /* Área do jogo */
     #jogo {
@@ -484,7 +537,32 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   <p id="msgErro" style="color:red; margin-top:10px;"></p>
   </div>
    <div id="telaEspecial" style="display:none;">
-    <p>Segredo gigatonico</p>
+      <!-- Carta / cena inicial -->
+    <div id="carta">
+      <div class="card">
+        <h2>Carta do açougue Lomb</h2>
+        <p>
+  Hoje começa seu turno como guarda. Aqui está algumas que deve ou não fazer:
+  O que não deve fazer:
+  - Mexer nos freezers.
+  - Entrar na cozinha.
+  - Deixar estranhos entrarem.
+  - Dormir no turno de trabalho.
+  O que deve fazer:
+  - Vigiar as câmeras durante a noite.
+  - Levar o lixo.
+  - Evitar possiveis vandâlos ou ladrões.
+  - Cuidar do sistema da ventilação.
+  
+  
+  Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos responsabilizando. Boa sorte!
+        </p>
+        <div class="actions">
+          <button onclick="pularCarta()">Pular</button>
+          <button class="primary" onclick="comecarNoite()">Começar Noite</button>
+        </div>
+      </div>
+  </div>
    </div>
   <!-- Tela de vitória -->
   <div id="vitoria">
