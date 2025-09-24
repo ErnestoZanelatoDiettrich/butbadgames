@@ -28,10 +28,10 @@
     }
     #opcoes { display: none; }
     #menu button, #opcoes button {
-      background-color: #1a1a1a; /* Fundo escuro */
-      color: #ff0000; /* Texto vermelho sangue */
-      border: 2px solid #660000; /* Borda vermelho escuro */
-      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
+      background-color: #1a1a1a;
+      color: #ff0000;
+      border: 2px solid #660000;
+      font-family: 'Creepster', sans-serif;
       font-size: 20px;
       padding: 10px 25px;
       margin: 10px;
@@ -39,30 +39,19 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-shadow: 1px 1px 3px black;
-
-      
     }
-     #menu button:hover {
-      background-color: #330000; /* Vermelho bem escuro */
-      color: #ffffff; /* Texto fica branco no hover */
-      border-color: #ff0000;
-      box-shadow: 0 0 10px #ff0000;
-     }
-    #menu button:active {
-      transform: scale(0.95);
-    }
-
-    #opcoes button:hover {
-      background-color: #330000; /* Vermelho bem escuro */
-      color: #ffffff; /* Texto fica branco no hover */
+    #menu button:hover, #opcoes button:hover {
+      background-color: #330000;
+      color: #ffffff;
       border-color: #ff0000;
       box-shadow: 0 0 10px #ff0000;
     }
-    #opcoes button:active {
+    #menu button:active, #opcoes button:active {
       transform: scale(0.95);
     }
+
     /* Carta (cena inicial) */
-    #carta {
+    #carta, #carta2 {
       display: none;
       position: fixed;
       top: 0; left: 0;
@@ -73,7 +62,7 @@
       align-items: center;
       padding: 20px;
     }
-    #carta .card {
+    #carta .card, #carta2 .card {
       background: linear-gradient(#fdf6e3, #f7ecd6);
       color: #111;
       width: 70%;
@@ -87,23 +76,19 @@
       flex-direction: column;
       gap: 14px;
     }
-    #carta .card h2 {
-      margin: 0;
-      letter-spacing: 1px;
-    }
-    #carta .card p {
+    #carta .card p, #carta2 .card p {
       line-height: 1.5;
       font-size: 1.05em;
       margin: 0;
       white-space: pre-wrap;
     }
-    #carta .actions {
+    #carta .actions, #carta2 .actions {
       margin-top: auto;
       display: flex;
       gap: 10px;
       justify-content: flex-end;
     }
-    #carta button {
+    #carta button, #carta2 button {
       padding: 10px 18px;
       border-radius: 8px;
       border: none;
@@ -111,7 +96,7 @@
       background: #333;
       color: white;
     }
-    #carta button.primary {
+    #carta button.primary, #carta2 button.primary {
       background: #007bff;
     }
 
@@ -176,148 +161,41 @@
       max-height: 100%;
     }
 
-    /* Botões de interação */
-    #abrirTablet {
+    /* Botões */
+    #abrirTablet, #abrirDireita, #abrirEsquerda, #abrirVentilacao {
       position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
       cursor: pointer;
       z-index: 101;
-      background-color: #1a1a1a; /* Fundo escuro */
-      color: #ff0000; /* Texto vermelho sangue */
-      border: 2px solid #660000; /* Borda vermelho escuro */
-      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
+      background-color: #1a1a1a;
+      color: #ff0000;
+      border: 2px solid #660000;
+      font-family: 'Creepster', sans-serif;
       font-size: 20px;
       padding: 10px 25px;
       margin: 10px;
       border-radius: 8px;
-      cursor: pointer;
       transition: all 0.3s ease;
       text-shadow: 1px 1px 3px black;
-
     }
-    #abrirTablet button:hover {
-      background-color: #330000; /* Vermelho bem escuro */
-      color: #ffffff; /* Texto fica branco no hover */
+    #abrirTablet { bottom: 20px; left: 50%; transform: translateX(-50%); }
+    #abrirDireita { bottom: 20px; right: 8%; transform: rotate(90deg); }
+    #abrirEsquerda { bottom: 20px; left: 8%; transform: rotate(270deg); display: none; }
+    #abrirVentilacao { bottom: 100px; left: 50%; transform: translateX(-50%); display: none; }
+
+    #abrirTablet:hover, #abrirDireita:hover, #abrirEsquerda:hover, #abrirVentilacao:hover {
+      background-color: #330000;
+      color: #ffffff;
       border-color: #ff0000;
       box-shadow: 0 0 10px #ff0000;
     }
-    #abrirTablet button:active {
+    #abrirTablet:active, #abrirDireita:active, #abrirEsquerda:active, #abrirVentilacao:active {
       transform: scale(0.95);
     }
-    #abrirDireita {
-      position: fixed;
-      bottom: 20px;
-      right: 8%;
-      transform: rotate(90deg);
-      cursor: pointer;
-      z-index: 101;
-      display: block;
-      background-color: #1a1a1a; /* Fundo escuro */
-      color: #ff0000; /* Texto vermelho sangue */
-      border: 2px solid #660000; /* Borda vermelho escuro */
-      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
-      font-size: 20px;
-      padding: 10px 25px;
-      margin: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-shadow: 1px 1px 3px black;
 
-    }
-    #abrirDireita button:hover {
-      background-color: #330000; /* Vermelho bem escuro */
-      color: #ffffff; /* Texto fica branco no hover */
-      border-color: #ff0000;
-      box-shadow: 0 0 10px #ff0000;
-    }
-    #abrirDireita button:active {
-      transform: scale(0.95);
-    }
-    #abrirEsquerda {
-      position: fixed;
-      bottom: 20px;
-      left: 8%;
-      transform: rotate(270deg);
-      cursor: pointer;
-      font-size: 2em;
-      z-index: 101;
-      display: none; /* começa escondido */
-      background-color: #1a1a1a; /* Fundo escuro */
-      color: #ff0000; /* Texto vermelho sangue */
-      border: 2px solid #660000; /* Borda vermelho escuro */
-      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
-      font-size: 20px;
-      padding: 10px 25px;
-      margin: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-shadow: 1px 1px 3px black;
-
-    }
-    #abrirEsquerda button:hover {
-      background-color: #330000; /* Vermelho bem escuro */
-      color: #ffffff; /* Texto fica branco no hover */
-      border-color: #ff0000;
-      box-shadow: 0 0 10px #ff0000;
-    }
-    #abrirEsquerda button:active {
-      transform: scale(0.95);
-    }
-    #abrirVentilacao {
-      position: fixed;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      cursor: pointer;
-      z-index: 101;
-      display: none; /* começa escondido */
-      background-color: #1a1a1a; /* Fundo escuro */
-      color: #ff0000; /* Texto vermelho sangue */
-      border: 2px solid #660000; /* Borda vermelho escuro */
-      font-family: 'Creepster', sans-serif; /* Fonte de terror (pode importar do Google Fonts) */
-      font-size: 20px;
-      padding: 10px 25px;
-      margin: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-shadow: 1px 1px 3px black;
-
-    }
-    #abrirVentilacao button:hover {
-      background-color: #330000; /* Vermelho bem escuro */
-      color: #ffffff; /* Texto fica branco no hover */
-      border-color: #ff0000;
-      box-shadow: 0 0 10px #ff0000;
-    }
-    #abrirVentilacao button:active {
-      transform: scale(0.95);
-    }
     /* Relógio / versão / créditos */
-    #relogio {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      font-size: 2em;
-    }
-    #versao {
-      position: fixed;
-      top: 10px;
-      left: 20px;
-      font-size: 1em;
-      color: red;
-    }
-    #creditos {
-      position: fixed;
-      top: 40px;
-      left: 20px;
-      font-size: 1em;
-      color: red;
-    }
+    #relogio { position: fixed; top: 10px; right: 20px; font-size: 2em; }
+    #versao { position: fixed; top: 10px; left: 20px; font-size: 1em; color: red; }
+    #creditos { position: fixed; top: 40px; left: 20px; font-size: 1em; color: red; }
 
     /* Tela de vitória / gameover */
     #vitoria, #gameover {
@@ -336,30 +214,6 @@
       flex-direction: column;
     }
 
-    #audioControl {
-      margin-top: 10px;
-      text-align: center;
-    }
-    #audioControl button {
-      background: #222;
-      color: white;
-      border: 2px solid white;
-      padding: 8px 16px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-       #btnTV {
-      position: absolute;
-      bottom: 15px;
-      right: 15px;
-      padding: 10px 20px;
-      background: #444;
-      border: 2px solid white;
-      cursor: pointer;
-      display: none;
-    }
-
     /* Janela da TV */
     #tvInteracao {
       display: none;
@@ -373,78 +227,19 @@
       flex-direction: column;
       z-index: 200;
     }
-    #tvInteracao input {
-      padding: 10px;
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    #tvInteracao button {
-      padding: 8px 16px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
+    #tvInteracao input { padding: 10px; font-size: 1.2em; margin-top: 10px; }
+    #tvInteracao button { padding: 8px 16px; margin-top: 10px; cursor: pointer; }
 
     /* Tela especial */
     #telaEspecial {
       display: none;
       position: fixed;
-      font-size: 3em;
-      display: flex;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
       z-index: 300;
-    }
-    #carta2 {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
-      z-index: 400;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    #carta2 .card {
-      background: linear-gradient(#fdf6e3, #f7ecd6);
-      color: #111;
-      width: 70%;
-      max-width: 900px;
-      height: 70%;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-      overflow: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    #carta2 .card h2 {
-      margin: 0;
-      letter-spacing: 1px;
-    }
-    #carta2 .card p {
-      line-height: 1.5;
-      font-size: 1.05em;
-      margin: 0;
-      white-space: pre-wrap;
-    }
-    #carta2 .actions {
-      margin-top: auto;
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-    #carta2 button {
-      padding: 10px 18px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      background: #333;
-      color: white;
-    }
-    #carta2 button.primary {
-      background: #007bff;
     }
   </style>
 </head>
@@ -740,7 +535,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       animatronic.pos = 1;
       relogio.innerText = horas[hora];
       fundoAtivo = 1;
-      document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
       document.body.style.backgroundSize = "cover";
       botaoOlharDireita.style.display = "block";
       botaoOlharEsquerda.style.display = "none";
@@ -854,33 +648,25 @@ function tocarAudio() {
       if (audioLigado) document.getElementById("somGameOver").play();
       gameover.style.display = "flex";
     }
-
-    // garantir que ao recarregar, volta ao menu
-    window.addEventListener("load", () => {
+      window.addEventListener("load", () => {
       menu.style.display = "flex";
       jogo.style.display = "none";
       carta.style.display = "none";
-      vitoria.style.display = "none";
-      gameover.style.display = "none";
-      telaEspecial.style.display = "none";
       carta2.style.display = "none";
-    
+      telaEspecial.style.display = "none";
+      tvInteracao.style.display = "none";
     });
-    
-// Abrir a interação com a TV
-function abrirTV() {
-  if (cameraAtual === 3) { // garante que só abre na câmera 3
-    tvInteracao.style.display = "flex";
-    msgErro.textContent = "";
-    document.getElementById("codigoInput").value = "";
-  }
-}
 
-// Fechar a TV
-function fecharTV() {
-  tvInteracao.style.display = "none";
-}
-
+    function abrirTV() {
+      if (cameraAtual === 3) {
+        tvInteracao.style.display = "flex";
+        msgErro.textContent = "";
+        document.getElementById("codigoInput").value = "";
+      }
+    }
+    function fecharTV() {
+      tvInteracao.style.display = "none";
+    }
 // Verificar código
 function verificarCodigo() {
   const valor = document.getElementById("codigoInput").value;
