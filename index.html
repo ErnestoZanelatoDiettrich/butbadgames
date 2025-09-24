@@ -902,6 +902,104 @@ function fecharCarta() {
 window.onload = () => {
   document.getElementById("telaEspecial").style.display = "none"; // garante que some no reload
 };
+  const imagens = {
+  High: {
+    fundoPrincipal: "fds fnaf png.png",
+    fundoDireita: "visaodireita.png",
+    fundoVent: "fds ventilacao.png",
+    minimapa: "fds minimap ofc HIGH.png",
+    cameras: [
+      null, // índice 0 ignorado (começa em 1)
+      "cam1_high.png",
+      "cam2_high.png",
+      "cam3_high.png",
+      "cam4_high.png",
+      "cam5_high.png",
+      "cam6_high.png",
+      "cam7_high.png"
+    ]
+  },
+  Medium: {
+    fundoPrincipal: "fds fnaf png.png",
+    fundoDireita: "visaodireita MEDIUM.png",
+    fundoVent: "fds ventilacao MEDIUM.png",
+    minimapa: "fds minimap ofc MEDIUM.png",
+    cameras: [
+      null,
+      "cam1_medium.png",
+      "cam2_medium.png",
+      "cam3_medium.png",
+      "cam4_medium.png",
+      "cam5_medium.png",
+      "cam6_medium.png",
+      "cam7_medium.png"
+    ]
+  },
+  Low: {
+    fundoPrincipal: "fds fnaf png.png",
+    fundoDireita: "visaodireita LOW.png",
+    fundoVent: "fds ventilacao LOW.png",
+    minimapa: "fds minimap ofc LOW.png",
+    cameras: [
+      null,
+      "cam1_low.png",
+      "cam2_low.png",
+      "cam3_low.png",
+      "cam4_low.png",
+      "cam5_low.png",
+      "cam6_low.png",
+      "cam7_low.png"
+    ]
+  }
+};
+
+// Atualiza todas as imagens do jogo de acordo com o gráfico selecionado
+function aplicarGrafico() {
+  const set = imagens[grafico];
+
+  // fundo principal (ao iniciar)
+  if (fundoAtivo === 1) {
+    document.body.style.background = `url('${set.fundoPrincipal}') no-repeat center center fixed`;
+  } else if (fundoAtivo === 2) {
+    document.body.style.background = `url('${set.fundoDireita}') no-repeat center center fixed`;
+  } else if (fundoAtivo === 3) {
+    document.body.style.background = `url('${set.fundoVent}') no-repeat center center fixed`;
+  }
+  document.body.style.backgroundSize = "cover";
+
+  // minimapa
+  document.getElementById("mapa").style.background = `url('${set.minimapa}') no-repeat center`;
+  document.getElementById("mapa").style.backgroundSize = "contain";
+
+  // se uma câmera já estiver aberta, atualiza ela
+  if (cameraAtual) {
+    const view = document.getElementById("cameraView");
+    view.innerHTML = `<img src="${set.cameras[cameraAtual]}" alt="Câmera ${cameraAtual}">`;
+  }
+}
+
+// Alterar gráfico
+function alterarGrafico() {
+  if (grafico === "High") grafico = "Medium";
+  else if (grafico === "Medium") grafico = "Low";
+  else grafico = "High";
+
+  statusGrafico.textContent = grafico;
+  aplicarGrafico(); // aplica imediatamente a mudança
+}
+
+// trocar câmera (atualizada)
+function trocarCamera(num) {
+  cameraAtual = num;
+  const set = imagens[grafico];
+  const view = document.getElementById("cameraView");
+  view.innerHTML = `<img src="${set.cameras[num]}" alt="Câmera ${num}">`;
+  document.getElementById("audioControl").style.display = "block";
+
+  if (animatronic.pos === num) {
+    console.log("Você vê o animatronic na câmera " + num);
+  }
+}
   </script>
 </body>
 </html>
