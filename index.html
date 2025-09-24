@@ -395,6 +395,58 @@
       align-items: center;
       z-index: 300;
     }
+    #carta2 {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 400;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    #carta2 .card {
+      background: linear-gradient(#fdf6e3, #f7ecd6);
+      color: #111;
+      width: 70%;
+      max-width: 900px;
+      height: 70%;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #carta2 .card h2 {
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    #carta2 .card p {
+      line-height: 1.5;
+      font-size: 1.05em;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    #carta2 .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    #carta2 button {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #333;
+      color: white;
+    }
+    #carta2 button.primary {
+      background: #007bff;
+    }
   </style>
 </head>
 <body>
@@ -480,14 +532,14 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   <p id="msgErro" style="color:red; margin-top:10px;"></p>
   </div>
    <div id="telaEspecial" style="display:none;">
-    <div id="carta">
+    <div id="carta2">
       <div class="card">
         <h2>Carta de James</h2>
         <p>
   Test
         </p>
         <div class="actions">
-          <button onclick="pularCarta()">Pular</button>
+          <button onclick="fecharCarta()">Pular</button>
           <button class="primary" onclick="comecarNoite()">Começar Noite</button>
         </div>
       </div>
@@ -545,6 +597,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const btnTV = document.getElementById("btnTV");
   const tvInteracao = document.getElementById("tvInteracao");
   const telaEspecial = document.getElementById("telaEspecial");
+  const carta2 = document.getElemetntById("carta2");
   const msgErro = document.getElementById("msgErro");
   let cameraAtual = null;
   const codigoCorreto = "0642";
@@ -557,6 +610,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     vitoria.style.display = "none";
     gameover.style.display = "none";
     telaEspecial.style.display = "none";
+    carta2.style.display = "none";
     tocarMusicaMenu();
   });
 
@@ -810,6 +864,7 @@ function tocarAudio() {
       vitoria.style.display = "none";
       gameover.style.display = "none";
       telaEspecial.style.display="none";
+      carta2.style.display="none";
     
     });
     
@@ -826,7 +881,10 @@ function abrirTV() {
 function fecharTV() {
   tvInteracao.style.display = "none";
 }
-
+// pular carta
+    function fecharCarta() {
+      carta2.style.display = "none";
+    }
 // Verificar código
 function verificarCodigo() {
   const valor = document.getElementById("codigoInput").value;
