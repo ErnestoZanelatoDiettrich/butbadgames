@@ -508,48 +508,57 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
 
   <script>
     // elementos
-    const menu = document.getElementById("menu");
-    const jogo = document.getElementById("jogo");
-    const tablet = document.getElementById("tablet");
-    const botaoTablet = document.getElementById("abrirTablet");
-    const botaoOlharDireita = document.getElementById("abrirDireita");
-    const botaoOlharEsquerda = document.getElementById("abrirEsquerda");
-    const botaoVentilacao = document.getElementById("abrirVentilacao");
-    const vitoria = document.getElementById("vitoria");
-    const gameover = document.getElementById("gameover");
-    const relogio = document.getElementById("relogio");
-    const opcoes = document.getElementById("opcoes");
-    const statusAudio = document.getElementById("statusAudio");
-    const statusGrafico = document.getElementById("statusGrafico");
-    const carta = document.getElementById("carta");
-    const menuMusic = document.getElementById("menuMusic");
-    const gameAmbience = document.getElementById("gameAmbience");
-    let audioLigado = true;
-    // estado
-    let aberto = false;
-    let hora = 0;
-    const horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
-    let timerInterval = null;
-    let moveInterval = null;
-    let animatronic = { pos: 1 }; // 1..7
-    let fundoAtivo = 1;
-    let grafico = "Alto";
-    const btnTV = document.getElementById("btnTV");
-    const tvInteracao = document.getElementById("tvInteracao");
-    const telaEspecial = document.getElementById("telaEspecial");
-    const msgErro = document.getElementById("msgErro");
-    let cameraAtual = null;
-    const codigoCorreto = "0642";
-    let cameraAtual = null;
-       window.onload = () => {
-      menuMusic.paused;
+  const menu = document.getElementById("menu");
+  const jogo = document.getElementById("jogo");
+  const tablet = document.getElementById("tablet");
+  const botaoTablet = document.getElementById("abrirTablet");
+  const botaoOlharDireita = document.getElementById("abrirDireita");
+  const botaoOlharEsquerda = document.getElementById("abrirEsquerda");
+  const botaoVentilacao = document.getElementById("abrirVentilacao");
+  const vitoria = document.getElementById("vitoria");
+  const gameover = document.getElementById("gameover");
+  const relogio = document.getElementById("relogio");
+  const opcoes = document.getElementById("opcoes");
+  const statusAudio = document.getElementById("statusAudio");
+  const statusGrafico = document.getElementById("statusGrafico");
+  const carta = document.getElementById("carta");
+  const menuMusic = document.getElementById("menuMusic");
+  const gameAmbience = document.getElementById("gameAmbience");
+  let audioLigado = true;
+
+  // estado
+  let aberto = false;
+  let hora = 0;
+  const horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
+  let timerInterval = null;
+  let moveInterval = null;
+  let animatronic = { pos: 1 }; // 1..7
+  let fundoAtivo = 1;
+  let grafico = "High";
+  const btnTV = document.getElementById("btnTV");
+  const tvInteracao = document.getElementById("tvInteracao");
+  const telaEspecial = document.getElementById("telaEspecial");
+  const msgErro = document.getElementById("msgErro");
+  let cameraAtual = null;
+  const codigoCorreto = "0642";
+
+  // garantir que ao recarregar, volta ao menu
+  window.addEventListener("load", () => {
+    menu.style.display = "flex";
+    jogo.style.display = "none";
+    carta.style.display = "none";
+    vitoria.style.display = "none";
+    gameover.style.display = "none";
+    telaEspecial.style.display = "none";
+    tocarMusicaMenu();
+  });
+
+  function tocarMusicaMenu() {
+    if (audioLigado && menuMusic.paused) {
+      menuMusic.volume = 0.4;
+      menuMusic.play().catch(err => console.log("Autoplay bloqueado:", err));
     }
-    function tocarMusicaMenu() {
-      if (audioLigado && menuMusic.paused) {
-        menuMusic.volume = 0.4;
-        menuMusic.play().catch(err => console.log("Autoplay bloqueado:", err));
-      }
-    }
+  }
     // esconda botão esquerda/ventilação inicialmente
     botaoOlharEsquerda.style.display = "none";
     botaoVentilacao.style.display = "none";
