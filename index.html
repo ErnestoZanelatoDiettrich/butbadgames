@@ -430,20 +430,19 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     // olhar direita
     botaoOlharDireita.addEventListener("click", () => {
       if (fundoAtivo !== 2) {
-        document.body.style.backgroundSize = "cover";
         fundoAtivo = 2;
+        aplicarGrafico();
         botaoOlharDireita.style.display = "none";
         botaoOlharEsquerda.style.display = "block";
         botaoVentilacao.style.display = "block";
       }
     });
 
-    // voltar (frente) / olhar esquerda
+    // voltar (frente)
     botaoOlharEsquerda.addEventListener("click", () => {
       if (fundoAtivo !== 1) {
-        document.body.style.background = "url('fds fnaf png.png') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
         fundoAtivo = 1;
+        aplicarGrafico();
         botaoOlharDireita.style.display = "block";
         botaoOlharEsquerda.style.display = "none";
         botaoVentilacao.style.display = "none";
@@ -453,10 +452,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     // abrir ventilação
     botaoVentilacao.addEventListener("click", () => {
       if (fundoAtivo !== 3) {
-        document.body.style.background = "url('ventilação.png') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
         fundoAtivo = 3;
-        // quando na ventilação, manter botão voltar (esquerda) disponível, esconder direita e ventilação
+        aplicarGrafico();
         botaoOlharEsquerda.style.display = "block";
         botaoOlharDireita.style.display = "none";
         botaoVentilacao.style.display = "none";
@@ -480,6 +477,14 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       if (animatronic.pos === num) {
         console.log("Você vê o animatronic na câmera " + num);
       }
+    }
+function aplicarGrafico() {
+      let src;
+      if (fundoAtivo === 1) src = imagens[grafico].frente;
+      if (fundoAtivo === 2) src = imagens[grafico].direita;
+      if (fundoAtivo === 3) src = imagens[grafico].ventilacao;
+      document.body.style.background = `url('${src}') no-repeat center center fixed`;
+      document.body.style.backgroundSize = "cover";
     }
 
     // tocar som para atrair
@@ -538,7 +543,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       botaoOlharDireita.style.display = "block";
       botaoOlharEsquerda.style.display = "none";
       botaoVentilacao.style.display = "none";
-
+      fundoAtivo = 1;
+      aplicarGrafico();
       // limpar intervalos anteriores se existirem
       if (timerInterval) clearInterval(timerInterval);
       if (moveInterval) clearInterval(moveInterval);
