@@ -790,41 +790,7 @@ function trocarCamera(num) {
     console.log("Você vê o animatronic na câmera " + num);
   }
 }
-    // Controle de câmeras pelo teclado
-document.addEventListener("keydown", (e) => {
-    switch (e.key) {
-        case "1":
-        case "2":
-        case "3":
-        case "4":
-        case "5":
-        case "6":
-        case "7":
-        case "8":
-        case "9":
-            changeCamera(parseInt(e.key)); // chama função que já troca a câmera
-            break;
-
-        case " ": // Barra de espaço = interagir
-            e.preventDefault(); // evita scroll da página
-            if (currentCamera === 3) {
-                abrirTelaTV(); // função que abre interação da TV na câmera 3
-            }
-            break;
-
-        case "ArrowLeft": // seta esquerda
-            olharEsquerda(); // função que você já tem
-            break;
-
-        case "ArrowRight": // seta direita
-            olharDireita(); // função que você já tem
-            break;
-
-        case "Escape": // ESC para abrir opções
-            abrirMenuOpcoes();
-            break;
-    }
-});
+   
 
   </script>
 </body>
