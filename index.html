@@ -417,15 +417,25 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     // esconda botão esquerda/ventilação inicialmente
     botaoOlharEsquerda.style.display = "none";
     botaoVentilacao.style.display = "none";
-
+  
+    
     // abrir/fechar tablet
-    botaoTablet.addEventListener("click", () => {
-      aberto = !aberto;
-      tablet.style.bottom = aberto ? "0" : "-100%";
-      const idSom = aberto ? "somAbrir" : "somFechar";
-      const som = document.getElementById(idSom);
-      if (som && audioLigado) som.play();
-    });
+  botaoTablet.addEventListener("click", () => {
+    aberto = !aberto;
+    tablet.style.bottom = aberto ? "0" : "-100%";
+    const idSom = aberto ? "somAbrir" : "somFechar";
+    const som = document.getElementById(idSom);
+    if (som && audioLigado) som.play();
+  
+    // ➝ esconder botão de ventilação enquanto as câmeras estão abertas
+    if (aberto) {
+      botaoVentilacao.style.display = "none";
+    } else {
+      if (fundoAtivo === 2) { // só mostra se estiver olhando à direita
+        botaoVentilacao.style.display = "block";
+      }
+    }
+  });
 
     // olhar direita
     botaoOlharDireita.addEventListener("click", () => {
