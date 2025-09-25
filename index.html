@@ -827,6 +827,14 @@ document.addEventListener("keydown", (e) => {
       voltarMenu();
       jogoAtivo = false; // desliga quando volta
       break;
+   
+    case "x":  case "X": // volta pro menu
+      gameOver()
+      break;
+  
+    case "j":  case "J":
+      fimDoJogo()
+      break;
   }
 });
    
