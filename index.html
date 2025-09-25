@@ -561,7 +561,7 @@ function aplicarGrafico() {
 
       // duração da hora (em ms) - ajuste pra testar
       const HORA_MS = 100000; // 5s por hora para testes
-
+      usarTeclas()
       // timer do relógio
       timerInterval = setInterval(() => {
         hora++;
@@ -800,6 +800,35 @@ function trocarCamera(num) {
     console.log("Você vê o animatronic na câmera " + num);
   }
 }
+  
+function usarTeclas() {
+  document.addEventListener("keydown", (e) => {
+  switch (e.key) {
+    case "c": // abre/fecha cameras
+    case "C":
+      botaoTablet.click();
+      break;
+
+    case "v": // abre/fecha ventilação
+    case "V":
+      if (fundoAtivo === 2 && !aberto) { // só abre se olhando direita e cameras fechadas
+        botaoVentilacao.click();
+      }
+      break;
+
+    case "ArrowLeft": // olha esquerda
+      olharEsquerda();
+      break;
+
+    case "ArrowRight": // olha direita
+      olharDireita();
+      break;
+
+    case "Escape": // volta pro menu
+      voltarMenu();
+      break;
+  }
+});
    
 
   </script>
