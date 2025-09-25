@@ -395,7 +395,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const msgErro = document.getElementById("msgErro");
   let cameraAtual = null;
   const codigoCorreto = "0642";
-
+  let jogoAtivo = false;
   // garantir que ao recarregar, volta ao menu
   window.addEventListener("load", () => {
     menu.style.display = "flex";
@@ -561,7 +561,7 @@ function aplicarGrafico() {
 
       // duração da hora (em ms) - ajuste pra testar
       const HORA_MS = 100000; // 5s por hora para testes
-      usarTeclas()
+      jogoAtivo = true;
       // timer do relógio
       timerInterval = setInterval(() => {
         hora++;
@@ -801,17 +801,16 @@ function trocarCamera(num) {
   }
 }
   
-function usarTeclas() {
-  document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => {
+  if (!jogoAtivo) return; // ignora se o jogo não tiver começado
+
   switch (e.key) {
-    case "c": // abre/fecha cameras
-    case "C":
+    case "c": case "C": // abre/fecha cameras
       botaoTablet.click();
       break;
 
-    case "v": // abre/fecha ventilação
-    case "V":
-      if (fundoAtivo === 2 && !aberto) { // só abre se olhando direita e cameras fechadas
+    case "v": case "V": // abre/fecha ventilação
+      if (fundoAtivo === 2 && !aberto) {
         botaoVentilacao.click();
       }
       break;
@@ -826,6 +825,7 @@ function usarTeclas() {
 
     case "Escape": // volta pro menu
       voltarMenu();
+      jogoAtivo = false; // desliga quando volta
       break;
   }
 });
