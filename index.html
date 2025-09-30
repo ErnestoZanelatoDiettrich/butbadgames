@@ -162,7 +162,7 @@
     }
 
     /* Botões */
-    #abrirTablet, #abrirDireita, #abrirEsquerda, #abrirVentilacao {
+    #abrirTablet, #abrirDireita, #abrirEsquerda, #abrirVentilacao, #fecharVentilacao {
       position: fixed;
       cursor: pointer;
       z-index: 101;
@@ -181,6 +181,7 @@
     #abrirDireita { bottom: 50%; right: 0%; transform: rotate(90deg); }
     #abrirEsquerda { bottom: 50%; left: 0%; transform: rotate(270deg); display: none; }
     #abrirVentilacao { bottom: 400px; left: 50%; transform: translateX(-50%); display: none; }
+    #fecharVentilacao { bottom: 400px; left: 50%; transform: translateX(-50%); display: none; }
 
     #abrirTablet:hover, #abrirDireita:hover, #abrirEsquerda:hover, #abrirVentilacao:hover {
       background-color: #330000;
@@ -298,6 +299,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     <button id="abrirDireita">▲</button>
     <button id="abrirEsquerda">▲</button>
     <button id="abrirVentilacao">Ventilation</button>
+    <button id="fecharVentilacao">Out</button>
 
     <!-- Tablet -->
     <div id="tablet">
@@ -368,6 +370,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const botaoOlharDireita = document.getElementById("abrirDireita");
   const botaoOlharEsquerda = document.getElementById("abrirEsquerda");
   const botaoVentilacao = document.getElementById("abrirVentilacao");
+  const botaoVentilacaoFechar = document.getElementById("fecharVentilacao");
   const vitoria = document.getElementById("vitoria");
   const gameover = document.getElementById("gameover");
   const relogio = document.getElementById("relogio");
@@ -430,6 +433,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     // ➝ esconder botão de ventilação enquanto as câmeras estão abertas
     if (aberto) {
       botaoVentilacao.style.display = "none";
+      botaoVentilacaoFechar.style.display = "none";
+
     } else {
       if (fundoAtivo === 2) { // só mostra se estiver olhando à direita
         botaoVentilacao.style.display = "block";
@@ -445,6 +450,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         botaoOlharDireita.style.display = "none";
         botaoOlharEsquerda.style.display = "block";
         botaoVentilacao.style.display = "block";
+        botaoVentilacaoFechar.style.display = "none";
+
       }
     });
 
@@ -456,6 +463,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         botaoOlharDireita.style.display = "block";
         botaoOlharEsquerda.style.display = "none";
         botaoVentilacao.style.display = "none";
+        botaoVentilacaoFechar.style.display = "none";
+
       }
     });
 
@@ -467,15 +476,18 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         botaoOlharEsquerda.style.display = "block";
         botaoOlharDireita.style.display = "none";
         botaoVentilacao.style.display = "none";
+        botaoVentilacaoFechar.style.display = "block";
       }
     });
-    botaoVentilacao.addEventListener("click", () => {
+    botaoVentilacaoFechar.addEventListener("click", () => {
       if (fundoAtivo === 3) {
         fundoAtivo = 2;
         aplicarGrafico();
         botaoOlharEsquerda.style.display = "block";
         botaoOlharDireita.style.display = "none";
         botaoVentilacao.style.display = "block";
+        botaoVentilacaoFechar.style.display = "none";
+
       }
     });
     // troca de câmeras
@@ -561,6 +573,7 @@ function aplicarGrafico() {
       botaoOlharDireita.style.display = "block";
       botaoOlharEsquerda.style.display = "none";
       botaoVentilacao.style.display = "none";
+      botaoVentilacaoFechar.style.display = "none";
       fundoAtivo = 1;
       aplicarGrafico();
       // limpar intervalos anteriores se existirem
@@ -821,6 +834,8 @@ document.addEventListener("keydown", (e) => {
       if (fundoAtivo === 2 && !aberto) {
         botaoVentilacao.click();
       }
+      if (fundoAtivo === 3 && aberto)
+        botaoVentilacaoFechar.click();
       break;
 
     case "ArrowLeft": // olha esquerda
