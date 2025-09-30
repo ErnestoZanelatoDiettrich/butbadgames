@@ -590,6 +590,7 @@ function aplicarGrafico() {
       animatronic.pos = 1;
       relogio.innerText = horas[hora];
       fundoAtivo = 1;
+      finalInesperado.style.display = "none";
       document.body.style.backgroundSize = "cover";
       botaoOlharDireita.style.display = "block";
       botaoOlharEsquerda.style.display = "none";
@@ -713,6 +714,7 @@ function tocarAudio() {
       carta2.style.display = "none";
       telaEspecial.style.display = "none";
       tvInteracao.style.display = "none";
+      finalInesperado.style.display = "none";
     });
 
     function abrirTV() {
