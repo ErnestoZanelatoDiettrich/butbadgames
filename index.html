@@ -242,8 +242,6 @@
       align-items: center;
       z-index: 300;
     }
-
-
     #finalInesperado {
       display:none;
       position:fixed;
@@ -257,8 +255,8 @@
     #jumpscareImg {
       max-width:100%; 
       max-height:100%;
-      background: url ('sinistro.png');
     }
+
   </style>
 </head>
 <body>
@@ -356,11 +354,13 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         </p>
         <div class="actions">
           <button onclick="fecharCarta()">Fechar</button>
-          <div id="jumpscare" style="finalInesperado">
         </div>
       </div>
+  </div> 
   </div>
-   </div>
+  <div id="finalInesperado">
+    <img id="jumpscareImg" src="sinistro.png" alt="Jumpscare">
+  </div> 
   <!-- Tela de vitória -->
   <div id="vitoria">
     <p>6 AM — Você Sobreviveu!</p>
@@ -745,13 +745,15 @@ function verificarCodigo() {
 function fecharCarta() {
   carta2.style.display = "none";
   telaEspecial.style.display = "none";
-  finalInesperado.style.display = "flex"; // mostra o bicho
+  finalInesperado.style.display = "flex"; // mostra o jumpscare
+
   if (audioLigado) {
-    somGameOver.currentTime = 0;
-    somGameOver.play();
+    const som = document.getElementById("somGameOver");
+    som.currentTime = 0;
+    som.play();
   }
 
-  // depois de 2s -> GAME OVER
+  // depois de 2s → GAME OVER
   setTimeout(() => {
     finalInesperado.style.display = "none";
     gameOver();
