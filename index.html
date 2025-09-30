@@ -829,11 +829,12 @@ document.addEventListener("keydown", (e) => {
     case "c": case "C": // abre/fecha cameras
       botaoTablet.click();
       break;
-
-    case "v": case "V": // abre/fecha ventilação
+    case "v": case "V": // abre
       if (fundoAtivo === 2 && !aberto) {
         botaoVentilacao.click();
       }
+      break;
+    case "f": case "F": /fecha ventilação
       if (fundoAtivo === 3 && aberto) {
         botaoVentilacaoFechar.click();
       }
