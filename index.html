@@ -461,6 +461,13 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
 
     // abrir ventilação
     botaoVentilacao.addEventListener("click", () => {
+      if (fundoAtivo === 3) {
+        fundoAtivo = 2;
+        aplicarGrafico();
+        botaoOlharEsquerda.style.display = "none";
+        botaoOlharDireita.style.display = "none";
+        botaoVentilacao.style.display = "block";
+      }
       if (fundoAtivo !== 3) {
         fundoAtivo = 3;
         aplicarGrafico();
