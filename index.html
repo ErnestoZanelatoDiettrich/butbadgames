@@ -401,6 +401,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const menuMusic = document.getElementById("menuMusic");
   const gameAmbience = document.getElementById("gameAmbience");
   let audioLigado = true;
+  const finalInesperado = document.getElementById("finalInesperado");
+
 
   // estado
   let aberto = false;
@@ -745,8 +747,8 @@ function fecharCarta() {
   telaEspecial.style.display = "none";
   finalInesperado.style.display = "flex"; // mostra o bicho
   if (audioLigado) {
-    gameOver.currentTime = 0;
-    gameOver.play();
+    somGameOver.currentTime = 0;
+    somGameOver.play();
   }
 
   // depois de 2s -> GAME OVER
