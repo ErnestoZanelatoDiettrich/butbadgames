@@ -468,15 +468,16 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         botaoOlharDireita.style.display = "none";
         botaoVentilacao.style.display = "none";
       }
+    });
+    botaoVentilacao.addEventListener("click", () => {
       if (fundoAtivo === 3) {
         fundoAtivo = 2;
         aplicarGrafico();
         botaoOlharEsquerda.style.display = "block";
         botaoOlharDireita.style.display = "none";
-        botaoVentilacao.style.display = "none";
+        botaoVentilacao.style.display = "block";
       }
     });
-
     // troca de câmeras
     function trocarCamera(num) {
       cameraAtual = num;
