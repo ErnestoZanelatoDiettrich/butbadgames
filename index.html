@@ -643,9 +643,12 @@ function aplicarGrafico() {
       opcoes.style.display = "none";
       menu.style.display = "flex";
       tocarMusicaMenu();
-      if (extrasliberado = 1) extrasBtn.style.display = "flex";
+      if (extrasliberado === 1) {
+          extrasBtn.style.display = "flex";
+      } else {
+          extrasBtn.style.display = "none"; // esconde até liberar
+      }
     }
-
     // toggles
       function toggleAudio() {
       audioLigado = !audioLigado;
