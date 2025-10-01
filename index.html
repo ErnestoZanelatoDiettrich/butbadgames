@@ -14,7 +14,7 @@
     }
   
     /* Menu inicial */
-    #menu, #opcoes {
+    #menu, #opcoes, #extras {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
@@ -27,7 +27,7 @@
       z-index: 300;
     }
     #opcoes { display: none; }
-    #menu button, #opcoes button {
+    #menu button, #opcoes button, #extras button {
       background-color: #1a1a1a;
       color: #ff0000;
       border: 2px solid #660000;
@@ -40,13 +40,13 @@
       transition: all 0.3s ease;
       text-shadow: 1px 1px 3px black;
     }
-    #menu button:hover, #opcoes button:hover {
+    #menu button:hover, #opcoes button:hover, #extras button:hover {
       background-color: #330000;
       color: #ffffff;
       border-color: #ff0000;
       box-shadow: 0 0 10px #ff0000;
     }
-    #menu button:active, #opcoes button:active {
+    #menu button:active, #opcoes button:active, #extras button:active {
       transform: scale(0.95);
     }
 
@@ -267,6 +267,7 @@
     <div id="creditos">Credits: Ernesto Z.D.</div>
     <button onclick="iniciarJogo()">Start</button>
     <button onclick="abrirOpcoes()">Options</button>
+    <button id="extrasBtn" onclick="abrirExtras()">Extras</button>
   </div>
 
   <!-- Opções -->
@@ -276,7 +277,16 @@
     <button onclick="alterarGrafico()">Graphics: <span id="statusGrafico">High</span></button>
     <button onclick="voltarMenu()">Back</button>
   </div>
-
+   <div id="extras">
+    <h1>Extras</h1>
+     <p>Obrigado por jogar! Aqui estão algumas informações:</p>
+     <ul>
+      <li>Este jogo é um projeto inspirado em FNAF.</li>
+      <li>Versão Alpha 2.3</li>
+      <li>Segredos estão escondidos pelas câmeras...</li>
+    </ul>
+    <button onclick="voltarMenuExtras()">Back</button>
+  </div>
   <!-- Carta / cena inicial -->
   <div id="carta">
     <div class="card">
@@ -395,6 +405,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const gameover = document.getElementById("gameover");
   const relogio = document.getElementById("relogio");
   const opcoes = document.getElementById("opcoes");
+  const extras = document.getElementById("extras");
   const statusAudio = document.getElementById("statusAudio");
   const statusGrafico = document.getElementById("statusGrafico");
   const carta = document.getElementById("carta");
@@ -402,7 +413,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const gameAmbience = document.getElementById("gameAmbience");
   let audioLigado = true;
   const finalInesperado = document.getElementById("finalInesperado");
-
+  const extrasBtn = document.getElementById("extrasBtn");
 
   // estado
   let aberto = false;
@@ -600,6 +611,8 @@ function aplicarGrafico() {
       botaoVentilacaoFechar.style.display = "none";
       finalInesperado.style.display = "none";
       fundoAtivo = 1;
+      extras.style.display = "none";
+      
       aplicarGrafico();
       // limpar intervalos anteriores se existirem
       if (timerInterval) clearInterval(timerInterval);
@@ -658,6 +671,8 @@ function aplicarGrafico() {
       if (moveInterval) clearInterval(moveInterval);
       if (audioLigado) document.getElementById("somVitoria").play();
       vitoria.style.display = "flex";
+      extrasBtn.style.display = "inline-block";
+      localStorage.setItem("extrasLiberados", "true")
     }
 
     // Configuração da dificuldade
@@ -860,7 +875,17 @@ function trocarCamera(num) {
     console.log("Você vê o animatronic na câmera " + num);
   }
 }
-  
+if (localStorage.getItem("extrasLiberados") === "true") {
+  extrasBtn.style.display = "inline-block";
+}
+function voltarMenuExtras() {
+  extras.style.display = "none";
+  menu.style.display = "flex";
+}
+function abrirExtras() {
+  menu.style.display = "none";
+  extras.style.display = "flex";
+}
 document.addEventListener("keydown", (e) => {
   if (!jogoAtivo) return; // ignora se o jogo não tiver começado
 
