@@ -410,7 +410,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   let audioLigado = true;
   const finalInesperado = document.getElementById("finalInesperado");
   const extrasBtn = document.getElementById("extrasBtn");
-
+  localStorage.getItem("extrasLiberados") === "false"
   // estado
   let aberto = false;
   let hora = 0;
@@ -439,6 +439,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     telaEspecial.style.display = "none";
     extras.style.display = "none";
     carta2.style.display = "none";
+    localStorage.getItem("extrasLiberados") === "false";
     tocarMusicaMenu();
   });
 
@@ -609,6 +610,7 @@ function aplicarGrafico() {
       finalInesperado.style.display = "none";
       fundoAtivo = 1;
       extras.style.display = "none";
+      
       
       aplicarGrafico();
       // limpar intervalos anteriores se existirem
