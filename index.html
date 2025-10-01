@@ -410,6 +410,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   let audioLigado = true;
   const finalInesperado = document.getElementById("finalInesperado");
   const extrasBtn = document.getElementById("extrasBtn");
+  let extrasliberado = 0;
   // estado
   let aberto = false;
   let hora = 0;
@@ -642,6 +643,7 @@ function aplicarGrafico() {
       opcoes.style.display = "none";
       menu.style.display = "flex";
       tocarMusicaMenu();
+      if (extrasliberado = 1) extrasBtn.style.display = "flex";
     }
 
     // toggles
@@ -670,7 +672,8 @@ function aplicarGrafico() {
       if (moveInterval) clearInterval(moveInterval);
       if (audioLigado) document.getElementById("somVitoria").play();
       vitoria.style.display = "flex";
-      extrasBtn.style.display = "inline-block";
+      extrasliberado = 1;
+      
     }
 
     // Configuração da dificuldade
