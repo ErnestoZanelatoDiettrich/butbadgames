@@ -256,7 +256,34 @@
       max-width:100%; 
       max-height:100%;
     }
-
+  #abrirTablet2 {
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #tablet2 {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 20, 0.95);
+    transition: bottom 0.5s;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  #tablet2 button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #222;
+    border: 2px solid red;
+    color: white;
+    cursor: pointer;
+  }
   </style>
 </head>
 <body>
@@ -321,7 +348,19 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     <button id="abrirEsquerda">▲</button>
     <button id="abrirVentilacao">Ventilation</button>
     <button id="fecharVentilacao">Out</button>
-
+    <button id="abrirTablet2">⚙️</button>
+    <!-- Tablet de manutenção -->
+    <div id="tablet2">
+      <h2>Manutenção</h2>
+      <p id="statusAudioSistema">Áudio: Funcionando</p>
+      <button onclick="reiniciarAudio()">Reiniciar Áudio</button>
+      <p id="statusVentilacaoSistema">Ventilação: Funcionando</p>
+      <button onclick="reiniciarVentilacao()">Reiniciar Ventilação</button>
+      <div>
+        <label>Toxidade:</label>
+        <progress id="barraToxidade" value="0" max="100"></progress>
+      </div>
+    </div>
     <!-- Tablet -->
     <div id="tablet">
       <div id="mapa">
@@ -428,6 +467,17 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   let cameraAtual = null;
   const codigoCorreto = "0642";
   let jogoAtivo = false;
+  let sistemaAudioOK = true;
+  let sistemaVentilacaoOK = true;
+  let toxidade = 0;
+  let toxidadeInterval = null;
+  const tablet2 = document.getElementById("tablet2");
+  const botaoTablet2 = document.getElementById("abrirTablet2");
+  const statusAudioSistema = document.getElementById("statusAudioSistema");
+  const statusVentilacaoSistema = document.getElementById("statusVentilacaoSistema");
+  const barraToxidade = document.getElementById("barraToxidade");
+  let aberto2 = false;
+
   // garantir que ao recarregar, volta ao menu
   window.addEventListener("load", () => {
     menu.style.display = "flex";
@@ -486,7 +536,40 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
 
       }
     });
-
+    botaoTablet2.addEventListener("click", () => {
+      aberto2 = !aberto2;
+      tablet2.style.bottom = aberto2 ? "0" : "-100%";
+    });
+    function verificarVentilacao() {
+      if (sistemaVentilacaoOK && Math.random() < 0.05) {
+        sistemaVentilacaoOK = false;
+        statusVentilacaoSistema.textContent = "Ventilação: Quebrada";
+        console.log("⚠️ Ventilação quebrou!");
+    
+        // começar a toxidade
+        toxidadeInterval = setInterval(() => {
+          if (!sistemaVentilacaoOK) {
+            toxidade += 5;
+            barraToxidade.value = toxidade;
+            if (toxidade >= 100) {
+              clearInterval(toxidadeInterval);
+              gameOver();
+            }
+          }
+        }, 1000);
+      }
+    }
+    // chama a checagem da ventilação a cada 10s
+    setInterval(() => {
+      if (jogoAtivo) verificarVentilacao();
+    }, 10000);
+    function reiniciarVentilacao() {
+      sistemaVentilacaoOK = true;
+      statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
+      toxidade = 0;
+      barraToxidade.value = toxidade;
+      if (toxidadeInterval) clearInterval(toxidadeInterval);
+    }
     // voltar (frente)
     botaoOlharEsquerda.addEventListener("click", () => {
       if (fundoAtivo !== 1) {
@@ -551,20 +634,32 @@ function aplicarGrafico() {
 
     // tocar som para atrair
     function tocarAudio() {
+      if (!sistemaAudioOK) {
+        console.log("Áudio quebrado! Precisa reiniciar no tablet 2.");
+        return;
+      }
       const audio = document.getElementById("lureSound");
       if (!audioLigado) return;
+    
+      // chance de quebrar ao tocar
+      if (Math.random() < 0.2) {
+        sistemaAudioOK = false;
+        statusAudioSistema.textContent = "Áudio: Quebrado";
+        console.log("⚠️ O sistema de áudio quebrou!");
+        return;
+      }
+    
       if (audio) {
         audio.currentTime = 0;
         audio.play();
       }
       console.log("Áudio tocado na Câmera " + cameraAtual);
-
-      if (cameraAtual != null && Math.random() < 0.7) {
+    
+      if (cameraAtual != null && Math.random() < 0.5) {
         animatronic.pos = cameraAtual;
         console.log("Animatronic foi atraído para a câmera " + cameraAtual);
       }
     }
-    
     // ---- Cena inicial: Carta ----
     // clicar em Iniciar abre a carta
     function iniciarJogo() {
