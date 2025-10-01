@@ -890,8 +890,14 @@ function abrirExtras() {
   extras.style.display = "flex";
 }
 document.addEventListener("keydown", (e) => {
-  if (!jogoAtivo) return; // ignora se o jogo não tiver começado
-
+  if (!jogoAtivo) { 
+  switch (e.key) {
+      case "u": case "U": // abre/fecha cameras
+        abrirExtras.click();
+        break;
+    }
+  }
+  if (jogoAtivo) {
   switch (e.key) {
     case "c": case "C": // abre/fecha cameras
       botaoTablet.click();
