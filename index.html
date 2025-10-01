@@ -438,7 +438,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     telaEspecial.style.display = "none";
     extras.style.display = "none";
     carta2.style.display = "none";
-    localStorage.setItem("extrasLiberados", "false");
+    extrasBtn.style.display = "none";
     tocarMusicaMenu();
   });
 
@@ -609,6 +609,7 @@ function aplicarGrafico() {
       finalInesperado.style.display = "none";
       fundoAtivo = 1;
       extras.style.display = "none";
+      extrasBtn.style.display = "none";
       
       
       aplicarGrafico();
@@ -670,7 +671,6 @@ function aplicarGrafico() {
       if (audioLigado) document.getElementById("somVitoria").play();
       vitoria.style.display = "flex";
       extrasBtn.style.display = "inline-block";
-      localStorage.setItem("extrasLiberados", "true")
     }
 
     // Configuração da dificuldade
@@ -872,9 +872,6 @@ function trocarCamera(num) {
   if (animatronic.pos === num) {
     console.log("Você vê o animatronic na câmera " + num);
   }
-}
-if (localStorage.getItem("extrasLiberados") === "true") {
-  extrasBtn.style.display = "inline-block";
 }
 function voltarMenuExtras() {
   extras.style.display = "none";
