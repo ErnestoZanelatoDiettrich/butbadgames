@@ -256,31 +256,41 @@
       max-width:100%; 
       max-height:100%;
     }
-  #abrirTablet2 {
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  #tablet2 {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(20, 20, 20, 0.95);
-    transition: bottom 0.5s;
-    z-index: 101;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
-  #fecharTablet2 {
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+#abrirTablet2 {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+#tablet2 {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.95);
+  transition: bottom 0.5s;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  padding: 20px;
+}
+
+#fecharTablet2 {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #660000;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 2px solid #ff0000;
+  cursor: pointer;
+}
   </style>
 </head>
 <body>
@@ -345,9 +355,9 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     <button id="abrirEsquerda">▲</button>
     <button id="abrirVentilacao">Ventilation</button>
     <button id="fecharVentilacao">Out</button>
-    <button id="abrirTablet2">⚙️</button>
-    <!-- Tablet de manutenção -->
+    <button id="abrirTablet2" onclick="abrirTablet2()">⚙️</button>
     <div id="tablet2">
+      <button id="fecharTablet2" onclick="fecharTablet2()">X</button>
       <h2>Manutenção</h2>
       <p id="statusAudioSistema">Áudio: Funcionando</p>
       <button onclick="reiniciarAudio()">Reiniciar Áudio</button>
@@ -357,7 +367,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         <label>Toxidade:</label>
         <progress id="barraToxidade" value="0" max="100"></progress>
       </div>
-      <button id="fecharTablet2">Fechar</button>
     </div>
     <!-- Tablet -->
     <div id="tablet">
@@ -604,14 +613,15 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
 
       }
     });
-    botaoTablet2.addEventListener("click", () => {
+    function abrirTablet2() {
       aberto2 = true;
       tablet2.style.bottom = "0";
-    });
-    fecharTablet2Btn.addEventListener("click", () => {
+    }
+    
+    function fecharTablet2() {
       aberto2 = false;
       tablet2.style.bottom = "-100%";
-    });
+    }
     // troca de câmeras
     function trocarCamera(num) {
       cameraAtual = num;
