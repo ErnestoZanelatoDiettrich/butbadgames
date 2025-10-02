@@ -162,7 +162,7 @@
     }
 
     /* Botões */
-    #abrirTablet, #abrirDireita, #abrirEsquerda, #abrirVentilacao, #fecharVentilacao {
+    #abrirTablet, #abrirDireita, #abrirEsquerda, #abrirVentilacao, #fecharVentilacao, #tablet2 button{
       position: fixed;
       cursor: pointer;
       z-index: 101;
@@ -183,7 +183,7 @@
     #abrirVentilacao { bottom: 400px; left: 50%; transform: translateX(-50%); display: none; }
     #fecharVentilacao { bottom: 400px; left: 50%; transform: translateX(-50%); display: none; }
 
-    #abrirTablet:hover, #abrirDireita:hover, #abrirEsquerda:hover, #abrirVentilacao:hover {
+    #abrirTablet:hover, #abrirDireita:hover, #abrirEsquerda:hover, #abrirVentilacao:hover, #tablet2 button:hover {
       background-color: #330000;
       color: #ffffff;
       border-color: #ff0000;
@@ -276,14 +276,6 @@
     justify-content: center;
     color: white;
   }
-  #tablet2 button {
-    margin: 10px;
-    padding: 10px 20px;
-    background: #222;
-    border: 2px solid red;
-    color: white;
-    cursor: pointer;
-  }
   </style>
 </head>
 <body>
@@ -360,6 +352,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         <label>Toxidade:</label>
         <progress id="barraToxidade" value="0" max="100"></progress>
       </div>
+      <button id="fecharTablet2">Fechar</button>
     </div>
     <!-- Tablet -->
     <div id="tablet">
@@ -477,6 +470,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const statusVentilacaoSistema = document.getElementById("statusVentilacaoSistema");
   const barraToxidade = document.getElementById("barraToxidade");
   let aberto2 = false;
+  const fecharTablet2Btn = document.getElementById("fecharTablet2");
 
   // garantir que ao recarregar, volta ao menu
   window.addEventListener("load", () => {
@@ -604,6 +598,14 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         botaoVentilacaoFechar.style.display = "none";
 
       }
+    });
+    botaoTablet2.addEventListener("click", () => {
+      aberto2 = true;
+      tablet2.style.bottom = "0";
+    });
+    fecharTablet2Btn.addEventListener("click", () => {
+      aberto2 = false;
+      tablet2.style.bottom = "-100%";
     });
     // troca de câmeras
     function trocarCamera(num) {
