@@ -520,9 +520,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   let sistemaVentilacaoOK = true;
   let toxidade = 0;
   let toxidadeInterval = null;
-  const statusAudioSistema = document.getElementById("statusAudioSistema");
-  const statusVentilacaoSistema = document.getElementById("statusVentilacaoSistema");
-  const barraToxidade = document.getElementById("barraToxidade");
   const fecharTablet2Btn = document.getElementById("fecharTablet2");
   let aberto2 = false;
   const tablet2 = document.getElementById("tablet2");
@@ -614,10 +611,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
         botaoVentilacaoFechar.style.display = "none";
 
       }
-    });
-    botaoTablet2.addEventListener("click", () => {
-      aberto2 = !aberto2;
-      tablet2.style.bottom = aberto2 ? "0" : "-100%";
     });
     function verificarVentilacao() {
       if (sistemaVentilacaoOK && Math.random() < 0.05) {
