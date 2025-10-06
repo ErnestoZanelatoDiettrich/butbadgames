@@ -261,6 +261,17 @@
   bottom: 20px;
   right: 20px;
   cursor: pointer;
+  background-color: #1a1a1a;
+  color: #ff0000;
+  border: 2px solid #660000;
+  font-family: 'Creepster', sans-serif;
+  font-size: 20px;
+  padding: 10px 25px;
+  margin: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 3px black;
+  z-index: 102;
 }
 
 #tablet2 {
@@ -271,13 +282,18 @@
   height: 100%;
   background: rgba(20, 20, 20, 0.95);
   transition: bottom 0.5s;
-  z-index: 101;
+  z-index: 500; /* ⬅️ Aumentado para ficar acima das câmeras */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   color: white;
   padding: 20px;
+}
+
+#tablet2 h2 {
+  margin-top: 40px;
+  font-size: 2em;
 }
 
 #fecharTablet2 {
@@ -291,15 +307,26 @@
   border: 2px solid #ff0000;
   cursor: pointer;
 }
-#reiniciarAudio {
-  position: absolute;
-  top: 15px;
-  right: 20px;
+
+/* botões internos */
+#tablet2 button:not(#fecharTablet2) {
+  background-color: #1a1a1a;
+  color: #ff0000;
+  border: 2px solid #660000;
+  font-family: 'Creepster', sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-#reiniciarVentilacao {
-  position: absolute;
-  top: 15px;
-  right: 20px;
+
+#tablet2 button:hover {
+  background-color: #330000;
+  color: #ffffff;
+  border-color: #ff0000;
+  box-shadow: 0 0 10px #ff0000;
 }
   </style>
 </head>
@@ -366,16 +393,21 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     <button id="abrirVentilacao">Ventilation</button>
     <button id="fecharVentilacao">Out</button>
     <button id="abrirTablet2" onclick="abrirTablet2()">⚙️</button>
+
+    <!-- Tablet 2 - Manutenção -->
     <div id="tablet2">
       <button id="fecharTablet2" onclick="fecharTablet2()">X</button>
       <h2>Manutenção</h2>
+    
       <p id="statusAudioSistema">Áudio: Funcionando</p>
-      <button onclick="reiniciarAudio()">Reiniciar Áudio</button>
+      <button onclick="reiniciarAudioSistema()">Reiniciar Áudio</button>
+    
       <p id="statusVentilacaoSistema">Ventilação: Funcionando</p>
-      <button onclick="reiniciarVentilacao()">Reiniciar Ventilação</button>
-      <div>
-        <label>Toxidade:</label>
-        <progress id="barraToxidade" value="0" max="100"></progress>
+      <button onclick="reiniciarVentilacaoSistema()">Reiniciar Ventilação</button>
+    
+      <div style="margin-top: 15px; width: 80%;">
+        <label for="barraToxidade">Toxidade:</label>
+        <progress id="barraToxidade" value="0" max="100" style="width:100%;"></progress>
       </div>
     </div>
     <!-- Tablet -->
@@ -488,14 +520,16 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   let sistemaVentilacaoOK = true;
   let toxidade = 0;
   let toxidadeInterval = null;
+  const statusAudioSistema = document.getElementById("statusAudioSistema");
+  const statusVentilacaoSistema = document.getElementById("statusVentilacaoSistema");
+  const barraToxidade = document.getElementById("barraToxidade");
+  const fecharTablet2Btn = document.getElementById("fecharTablet2");
+  let aberto2 = false;
   const tablet2 = document.getElementById("tablet2");
   const botaoTablet2 = document.getElementById("abrirTablet2");
   const statusAudioSistema = document.getElementById("statusAudioSistema");
   const statusVentilacaoSistema = document.getElementById("statusVentilacaoSistema");
   const barraToxidade = document.getElementById("barraToxidade");
-  let aberto2 = false;
-  const fecharTablet2Btn = document.getElementById("fecharTablet2");
-
   // garantir que ao recarregar, volta ao menu
   window.addEventListener("load", () => {
     menu.style.display = "flex";
@@ -510,7 +544,34 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     extrasBtn.style.display = "none";
     tocarMusicaMenu();
   });
-
+  botaoTablet2.addEventListener("click", abrirTablet2);
+  
+  function abrirTablet2() {
+    aberto2 = true;
+    tablet2.style.bottom = "0";
+  }
+  
+  function fecharTablet2() {
+    aberto2 = false;
+    tablet2.style.bottom = "-100%";
+  }
+  
+  // Reiniciar áudio do sistema
+  function reiniciarAudioSistema() {
+    sistemaAudioOK = true;
+    statusAudioSistema.textContent = "Áudio: Funcionando";
+    console.log("✅ Sistema de áudio reiniciado.");
+  }
+  
+  // Reiniciar ventilação do sistema
+  function reiniciarVentilacaoSistema() {
+    sistemaVentilacaoOK = true;
+    statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
+    toxidade = 0;
+    barraToxidade.value = toxidade;
+    if (toxidadeInterval) clearInterval(toxidadeInterval);
+    console.log("✅ Sistema de ventilação reiniciado.");
+  }
   function tocarMusicaMenu() {
     if (audioLigado && menuMusic.paused) {
       menuMusic.volume = 0.4;
