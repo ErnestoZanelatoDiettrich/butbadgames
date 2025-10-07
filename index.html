@@ -585,7 +585,28 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     statusAudioSistema.textContent = "Áudio: Funcionando";
     console.log("✅ Sistema de áudio reiniciado.");
   }
-  
+  function quebrarVentilacao() {
+    sistemaVentilacaoOK = false;
+        statusVentilacaoSistema.textContent = "Ventilação: Quebrada";
+        console.log("⚠️ Ventilação quebrou!");
+    
+        // começar a toxidade
+        toxidadeInterval = setInterval(() => {
+          if (!sistemaVentilacaoOK) {
+            toxidade += 5;
+            barraToxidade.value = toxidade;
+            if (toxidade >= 100) {
+              clearInterval(toxidadeInterval);
+              gameOver();
+            }
+          }
+        }, 1000);
+      }
+   function quebrarAudio() {
+      sistemaAudioOK = false;
+      statusAudioSistema.textContent = "Áudio: Quebrado";
+      console.log("⚠️ O sistema de áudio quebrou!");
+   }
   // Reiniciar ventilação do sistema
   function reiniciarVentilacaoSistema() {
     sistemaVentilacaoOK = true;
@@ -907,23 +928,6 @@ function moverAnimatronic() {
   }
 }
 
-// tocar som para atrair
-function tocarAudio() {
-  const audio = document.getElementById("lureSound");
-  if (!audioLigado) return;
-  if (audio) {
-    audio.currentTime = 0;
-    audio.play();
-  }
-  console.log("Áudio tocado na Câmera " + cameraAtual);
-
-  // Chance de atrair para a câmera em que tocou o áudio
-  if (cameraAtual != null && Math.random() < 0.5) {
-    animatronic.pos = cameraAtual;
-    console.log("Animatronic foi atraído para a câmera " + cameraAtual);
-  }
-}
-
     function gameOver() {
       if (timerInterval) clearInterval(timerInterval);
       if (moveInterval) clearInterval(moveInterval);
@@ -1125,7 +1129,12 @@ document.addEventListener("keydown", (e) => {
       if(aberto2 === false) abrirTablet2();
       else if(aberto2 ==! false) fecharTablet2();
       break;
-  
+    case "o": case "O":
+      quebrarAudio();
+      break;
+    case "p": case "P":
+      quebrarVentilacao();
+      break;
   }
 });
    
