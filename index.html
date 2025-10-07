@@ -1108,26 +1108,7 @@ document.addEventListener("keydown", (e) => {
     case "j":  case "J":
       fimDoJogo()
       break;
-      
-    case "o":  case "O":
-         sistemaVentilacaoOK = false;
-          statusVentilacaoSistema.textContent = "Ventilação: Quebrada";
-          console.log("⚠️ Ventilação quebrou!");
-      
-          // começar a toxidade
-          toxidadeInterval = setInterval(() => {
-            if (!sistemaVentilacaoOK) {
-              toxidade += 5;
-              barraToxidade.value = toxidade;
-              if (toxidade >= 100) {
-                clearInterval(toxidadeInterval);
-                gameOver();
-              }
-            }
-          }, 1000);
-        }
-      }
-      break;
+  
   }
 });
    
