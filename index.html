@@ -581,9 +581,11 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   
   // Reiniciar áudio do sistema
   function reiniciarAudioSistema() {
-    sistemaAudioOK = true;
-    statusAudioSistema.textContent = "Áudio: Funcionando";
-    console.log("✅ Sistema de áudio reiniciado.");
+    setTimeout(() => {
+      sistemaAudioOK = true;
+      statusAudioSistema.textContent = "Áudio: Funcionando";
+      console.log("✅ Sistema de áudio reiniciado.");
+    },10000);
   }
   function quebrarVentilacao() {
     sistemaVentilacaoOK = false;
@@ -609,12 +611,14 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
    }
   // Reiniciar ventilação do sistema
   function reiniciarVentilacaoSistema() {
-    sistemaVentilacaoOK = true;
-    statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
-    toxidade = 0;
-    barraToxidade.value = toxidade;
-    if (toxidadeInterval) clearInterval(toxidadeInterval);
-    console.log("✅ Sistema de ventilação reiniciado.");
+    setTimeout(() => {
+      sistemaVentilacaoOK = true;
+      statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
+      toxidade = 0;
+      barraToxidade.value = toxidade;
+      if (toxidadeInterval) clearInterval(toxidadeInterval);
+      console.log("✅ Sistema de ventilação reiniciado.");
+    },10000);
   }
   function tocarMusicaMenu() {
     if (audioLigado && menuMusic.paused) {
