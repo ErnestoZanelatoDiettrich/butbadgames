@@ -567,11 +567,15 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   function fecharTablet2() {
     aberto2 = false;
     tablet2.style.bottom = "-100%";
-    botaoOlharEsquerda.style.display = "block";
-    botaoOlharDireita.style.display = "block";
-    botaoVentilacao.style.display = "block";
-    botaoTablet.style.display = "block";
+    if (fundoAtivo === 2) { // só mostra se estiver olhando à direita
+        botaoVentilacao.style.display = "block";
+        botaoOlharEsquerda.style.display = "block";
+    } else if (fundoAtivo === 1) {
+        botaoOlharDireita.style.display = "block";
+    } else if (fundoAtivo === 3) {
+        botaoVentilacaoFechar.style.display = "block";
 
+    }
   }
   
   // Reiniciar áudio do sistema
@@ -616,16 +620,13 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       botaoTablet2.style.display = "none";
       botaoOlharDireita.style.display = "none";
       botaoOlharEsquerda.style.display = "none";
-
-
-
-
-
-    } else {
       if (fundoAtivo === 2) { // só mostra se estiver olhando à direita
         botaoVentilacao.style.display = "block";
-      }
-    }
+        botaoOlharEsquerda.style.display = "block";
+      } else if (fundoAtivo === 1) {
+        botaoOlharDireita.style.display = "block";
+     } else if (fundoAtivo === 3) {
+        botaoVentilacaoFechar.style.display = "block";
   });
 
     // olhar direita
@@ -1088,19 +1089,27 @@ document.addEventListener("keydown", (e) => {
   if (!jogoAtivo) return; 
   switch (e.key) {
     case "c": case "C": // abre/fecha cameras
-      botaoTablet.click();
+      if (aberto2 ==! true) {
+        botaoTablet.click();
+      }
       break;
     case "v": case "V": // abre
       if (fundoAtivo === 2 && !aberto) {
+        if (aberto2 ==! true &&  aberto ==! true) {
         botaoVentilacao.click();
+        }
       }
       break;
     case "ArrowLeft": // olha esquerda
-      botaoOlharEsquerda.click();
+      if (aberto2 ==! true &&  aberto ==! true) {
+        botaoOlharEsquerda.click();
+      }
       break;
 
     case "ArrowRight": // olha direita
-      botaoOlharDireita.click();
+      if (aberto2 ==! true &&  aberto ==! true) {
+        botaoOlharDireita.click();
+      }
       break;
 
     case "Escape": // volta pro menu
