@@ -561,12 +561,13 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     botaoOlharDireita.style.display = "none";
     botaoVentilacao.style.display = "none";
     botaoTablet.style.display = "none";
-    
+  
   }
   
   function fecharTablet2() {
     aberto2 = false;
     tablet2.style.bottom = "-100%";
+    botaoTablet.style.display = "block";
     if (fundoAtivo === 2) { // só mostra se estiver olhando à direita
         botaoVentilacao.style.display = "block";
         botaoOlharEsquerda.style.display = "block";
@@ -620,6 +621,8 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       botaoTablet2.style.display = "none";
       botaoOlharDireita.style.display = "none";
       botaoOlharEsquerda.style.display = "none";
+    } else if (aberto ==! true) {
+      botaoTablet2.style.display = "block";
       if (fundoAtivo === 2) { // só mostra se estiver olhando à direita
         botaoVentilacao.style.display = "block";
         botaoOlharEsquerda.style.display = "block";
