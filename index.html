@@ -1117,7 +1117,11 @@ document.addEventListener("keydown", (e) => {
       break;
     
     case "q":  case "Q":
-      fimDoJogo()
+      if(aberto2 === false) {
+        abrirTablet2();
+      } else if(aberto2 ==! false) {
+        fecharTablet2();
+      }
       break;
   
   }
