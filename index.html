@@ -1089,27 +1089,19 @@ document.addEventListener("keydown", (e) => {
   if (!jogoAtivo) return; 
   switch (e.key) {
     case "c": case "C": // abre/fecha cameras
-      if (aberto2 ==! true) {
-        botaoTablet.click();
-      }
+      if (aberto2 ==! true) botaoTablet.click();
       break;
     case "v": case "V": // abre
       if (fundoAtivo === 2 && !aberto) {
-        if (aberto2 ==! true &&  aberto ==! true) {
-        botaoVentilacao.click();
-        }
+        if (aberto2 ==! true &&  aberto ==! true) botaoVentilacao.click();
       }
       break;
     case "ArrowLeft": // olha esquerda
-      if (aberto2 ==! true &&  aberto ==! true) {
-        botaoOlharEsquerda.click();
-      }
+      if (aberto2 ==! true &&  aberto ==! true) botaoOlharEsquerda.click();
       break;
 
     case "ArrowRight": // olha direita
-      if (aberto2 ==! true &&  aberto ==! true) {
-        botaoOlharDireita.click();
-      }
+      if (aberto2 ==! true &&  aberto ==! true) botaoOlharDireita.click();
       break;
 
     case "Escape": // volta pro menu
@@ -1126,11 +1118,8 @@ document.addEventListener("keydown", (e) => {
       break;
     
     case "q":  case "Q":
-      if(aberto2 === false) {
-        abrirTablet2();
-      } else if(aberto2 ==! false) {
-        fecharTablet2();
-      }
+      if(aberto2 === false) abrirTablet2();
+      else if(aberto2 ==! false) fecharTablet2();
       break;
   
   }
