@@ -289,20 +289,18 @@
 }
 
 #tablet2 {
-  position: fixed;
-  bottom: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(20, 20, 20, 0.95);
-  transition: bottom 0.5s;
-  z-index: 500; /* ⬅️ Aumentado para ficar acima das câmeras */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  color: white;
-  padding: 20px;
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    transition: bottom 0.5s;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #tablet2 h2 {
@@ -1109,6 +1107,26 @@ document.addEventListener("keydown", (e) => {
   
     case "j":  case "J":
       fimDoJogo()
+      break;
+      
+    case "o":  case "O":
+         sistemaVentilacaoOK = false;
+          statusVentilacaoSistema.textContent = "Ventilação: Quebrada";
+          console.log("⚠️ Ventilação quebrou!");
+      
+          // começar a toxidade
+          toxidadeInterval = setInterval(() => {
+            if (!sistemaVentilacaoOK) {
+              toxidade += 5;
+              barraToxidade.value = toxidade;
+              if (toxidade >= 100) {
+                clearInterval(toxidadeInterval);
+                gameOver();
+              }
+            }
+          }, 1000);
+        }
+      }
       break;
   }
 });
