@@ -346,7 +346,7 @@
 
   <!-- Menu inicial -->
   <div id="menu">
-    <div id="versao">Version: Alpha 2.3</div>
+    <div id="versao">Version: Beta 1.0</div>
     <div id="creditos">Credits: Ernesto Z.D.</div>
     <button onclick="iniciarJogo()">Start</button>
     <button onclick="abrirOpcoes()">Options</button>
@@ -554,15 +554,24 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     tocarMusicaMenu();
   });
   botaoTablet2.addEventListener("click", abrirTablet2);
-  
   function abrirTablet2() {
     aberto2 = true;
     tablet2.style.bottom = "0";
+    botaoOlharEsquerda.style.display = "none";
+    botaoOlharDireita.style.display = "none";
+    botaoVentilacao.style.display = "none";
+    botaoTablet.style.display = "none";
+    
   }
   
   function fecharTablet2() {
     aberto2 = false;
     tablet2.style.bottom = "-100%";
+    botaoOlharEsquerda.style.display = "block";
+    botaoOlharDireita.style.display = "block";
+    botaoVentilacao.style.display = "block";
+    botaoTablet.style.display = "block";
+
   }
   
   // Reiniciar áudio do sistema
@@ -604,6 +613,13 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     if (aberto) {
       botaoVentilacao.style.display = "none";
       botaoVentilacaoFechar.style.display = "none";
+      botaoTablet2.style.display = "none";
+      botaoOlharDireita.style.display = "none";
+      botaoOlharEsquerda.style.display = "none";
+
+
+
+
 
     } else {
       if (fundoAtivo === 2) { // só mostra se estiver olhando à direita
@@ -689,15 +705,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
 
       }
     });
-    function abrirTablet2() {
-      aberto2 = true;
-      tablet2.style.bottom = "0";
-    }
-    
-    function fecharTablet2() {
-      aberto2 = false;
-      tablet2.style.bottom = "-100%";
-    }
     // troca de câmeras
     function trocarCamera(num) {
       cameraAtual = num;
@@ -1106,6 +1113,10 @@ document.addEventListener("keydown", (e) => {
       break;
   
     case "j":  case "J":
+      fimDoJogo()
+      break;
+    
+    case "q":  case "Q":
       fimDoJogo()
       break;
   
