@@ -606,7 +606,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   // Reiniciar áudio do sistema
   function reiniciarAudioSistema() {
     rebootSound.loop = true;
-    if (audioLigado) document.getElementById("rebootSound").play()
+    if (audioLigado === true) document.getElementById("rebootSound").play();
     setTimeout(() => {
       sistemaAudioOK = true;
       rebootSound.pause();
@@ -640,7 +640,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   // Reiniciar ventilação do sistema
   function reiniciarVentilacaoSistema() {
     rebootSound.loop = true;
-    if (audioLigado) document.getElementById("rebootSound").play()
+    if (audioLigado === true) document.getElementById("rebootSound").play();
     setTimeout(() => {
       sistemaVentilacaoOK = true;
       statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
@@ -726,13 +726,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       if (jogoAtivo) verificarVentilacao();
     }, 10000);
     
-    function reiniciarVentilacao() {
-      sistemaVentilacaoOK = true;
-      statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
-      toxidade = 0;
-      barraToxidade.value = toxidade;
-      if (toxidadeInterval) clearInterval(toxidadeInterval);
-    }
     // voltar (frente)
     botaoOlharEsquerda.addEventListener("click", () => {
       if (fundoAtivo !== 1) {
