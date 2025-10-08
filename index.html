@@ -780,14 +780,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
           view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
     }
 }
-function aplicarGrafico() {
-      let src;
-      if (fundoAtivo === 1) src = imagens[grafico].frente;
-      if (fundoAtivo === 2) src = imagens[grafico].direita;
-      if (fundoAtivo === 3) src = imagens[grafico].ventilacao;
-      document.body.style.background = `url('${src}') no-repeat center center fixed`;
-      document.body.style.backgroundSize = "cover";
-    }
 
     // tocar som para atrair
     function tocarAudio() {
@@ -914,13 +906,6 @@ function aplicarGrafico() {
         if (menu.style.display !== "none") menuMusic.play();
         if (jogo.style.display !== "none") gameAmbience.play();
       }
-    }
-
-    function alterarGrafico() {
-      if (grafico === "High") grafico = "Medium";
-      else if (grafico === "Medium") grafico = "Low";
-      else grafico = "High";
-      statusGrafico.textContent = grafico;
     }
 
     // fim de noite (vitoria)
