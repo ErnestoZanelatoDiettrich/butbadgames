@@ -1104,8 +1104,7 @@ function alterarGrafico() {
 // trocar câmera (atualizada)
 function trocarCamera(num) {
   cameraAtual = num;
-  const set = imagens[grafico];
-  const view = document.getElementById("cameraView");
+  const set = imagens[grafico];;
   view.innerHTML = `<img src="${set.cameras[num]}" alt="Câmera ${num}">`;
   document.getElementById("audioControl").style.display = "block";
 
