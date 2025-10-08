@@ -763,7 +763,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       cameraAtual = num;
       const view = document.getElementById("cameraView");
       document.getElementById("audioControl").style.display = "block";
-    
+      const set = imagens[grafico];
       // Mostrar o botão da TV apenas na câmera 3
       if (num === 3) {
         btnTV.style.display = "block";
@@ -1102,16 +1102,6 @@ function alterarGrafico() {
 }
 
 // trocar câmera (atualizada)
-function trocarCamera(num) {
-  cameraAtual = num;
-  const set = imagens[grafico];;
-  view.innerHTML = `<img src="${set.cameras[num]}" alt="Câmera ${num}">`;
-  document.getElementById("audioControl").style.display = "block";
-
-  if (animatronic.pos === num) {
-    console.log("Você vê o animatronic na câmera " + num);
-  }
-}
 function voltarMenuExtras() {
   extras.style.display = "none";
   menu.style.display = "flex";
