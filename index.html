@@ -509,6 +509,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   <audio id="somVitoria" src="FNAF - 6 AM sound.mp3"></audio>
   <audio id="somGameOver" src="FNAF 4 Jumpscare Sound Effect.mp3"></audio>
   <audio id="reiniciarAlgo" src="Reboot.mp3" loop></audio>
+  <audio id="estaticaSom" src="" loop></audio>
 
   <script>
     // elementos
@@ -531,7 +532,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const menuMusic = document.getElementById("menuMusic");
   const gameAmbience = document.getElementById("gameAmbience");
   const rebootSound = document.getElementById("reiniciarAlgo");
-    
+  const staticSound = document.getElementById("estaticaSom");
   let audioLigado = true;
   const finalInesperado = document.getElementById("finalInesperado");
   const extrasBtn = document.getElementById("extrasBtn");
@@ -563,6 +564,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const statusAudioSistema = document.getElementById("statusAudioSistema");
   const statusVentilacaoSistema = document.getElementById("statusVentilacaoSistema");
   const barraToxidade = document.getElementById("barraToxidade");
+  
   // garantir que ao recarregar, volta ao menu
   window.addEventListener("load", () => {
     menu.style.display = "flex";
@@ -761,7 +763,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     function trocarCamera(num) {
       cameraAtual = num;
       const view = document.getElementById("cameraView");
-      view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
       document.getElementById("audioControl").style.display = "block";
     
       // Mostrar o botão da TV apenas na câmera 3
@@ -772,8 +773,13 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       }
     
       if (animatronic.pos === num) {
-        console.log("Você vê o animatronic na câmera " + num);
-      }
+          view.innerHTML = `<img src="estatica_gif.gif" alt="Estática">`;
+          if (audioLigado === true) {
+            staticSound.currentTime = 0;
+            staticSound.play();
+        }
+      } else {
+          view.innerHTML = `<img src="cam${num}.png" alt="Câmera ${num}">`;
     }
 function aplicarGrafico() {
       let src;
