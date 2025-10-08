@@ -602,15 +602,20 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
 
     }
   }
-  
-  // Reiniciar áudio do sistema
-  function reiniciarAudioSistema() {
+  function tocarReboot() {
     rebootSound.loop = true;
     if (audioLigado === true) document.getElementById("rebootSound").play();
-    setTimeout(() => {
-      sistemaAudioOK = true;
+  }
+  function pararReboot() {
       rebootSound.pause();
       rebootSound.currentTime = 0;
+  }
+  // Reiniciar áudio do sistema
+  function reiniciarAudioSistema() {
+    tocarReboot();
+    setTimeout(() => {
+      sistemaAudioOK = true;
+      pararReboot();
       statusAudioSistema.textContent = "Áudio: Funcionando";
       console.log("✅ Sistema de áudio reiniciado.");
     },10000);
@@ -639,15 +644,13 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
    }
   // Reiniciar ventilação do sistema
   function reiniciarVentilacaoSistema() {
-    rebootSound.loop = true;
-    if (audioLigado === true) document.getElementById("rebootSound").play();
+    tocarReboot();
     setTimeout(() => {
       sistemaVentilacaoOK = true;
       statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
       toxidade = 0;
       barraToxidade.value = toxidade;
-      rebootSound.pause();
-      rebootSound.currentTime = 0;
+      pararReboot();
       if (toxidadeInterval) clearInterval(toxidadeInterval);
       console.log("✅ Sistema de ventilação reiniciado.");
     },10000);
