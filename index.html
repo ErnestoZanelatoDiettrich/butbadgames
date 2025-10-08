@@ -508,6 +508,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somVitoria" src="FNAF - 6 AM sound.mp3"></audio>
   <audio id="somGameOver" src="FNAF 4 Jumpscare Sound Effect.mp3"></audio>
+  <audio id="reiniciarAlgo" src="Reboot.mp3"></audio>
 
   <script>
     // elementos
@@ -529,11 +530,12 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   const carta = document.getElementById("carta");
   const menuMusic = document.getElementById("menuMusic");
   const gameAmbience = document.getElementById("gameAmbience");
+  const rebootSound = document.getElementById("reiniciarAlgo");
+    
   let audioLigado = true;
   const finalInesperado = document.getElementById("finalInesperado");
   const extrasBtn = document.getElementById("extrasBtn");
   let extrasliberado = 0;
-  // estado
   let aberto = false;
   let hora = 0;
   const horas = ["12 AM","1 AM","2 AM","3 AM","4 AM","5 AM","6 AM"];
@@ -603,8 +605,12 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   
   // Reiniciar áudio do sistema
   function reiniciarAudioSistema() {
+    rebootSound.loop = true;
+    if (audioLigado) document.getElementById("rebootSound").play()
     setTimeout(() => {
       sistemaAudioOK = true;
+      rebootSound.pause();
+      rebootSound.currentTime = 0;
       statusAudioSistema.textContent = "Áudio: Funcionando";
       console.log("✅ Sistema de áudio reiniciado.");
     },10000);
@@ -633,11 +639,15 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
    }
   // Reiniciar ventilação do sistema
   function reiniciarVentilacaoSistema() {
+    rebootSound.loop = true;
+    if (audioLigado) document.getElementById("rebootSound").play()
     setTimeout(() => {
       sistemaVentilacaoOK = true;
       statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
       toxidade = 0;
       barraToxidade.value = toxidade;
+      rebootSound.pause();
+      rebootSound.currentTime = 0;
       if (toxidadeInterval) clearInterval(toxidadeInterval);
       console.log("✅ Sistema de ventilação reiniciado.");
     },10000);
@@ -715,6 +725,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     setInterval(() => {
       if (jogoAtivo) verificarVentilacao();
     }, 10000);
+    
     function reiniciarVentilacao() {
       sistemaVentilacaoOK = true;
       statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
