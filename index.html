@@ -508,7 +508,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
   <audio id="somFechar" src="FNAF_ Monitor Pulled Up - Gaming Sound Effect (HD).mp3"></audio>
   <audio id="somVitoria" src="FNAF - 6 AM sound.mp3"></audio>
   <audio id="somGameOver" src="FNAF 4 Jumpscare Sound Effect.mp3"></audio>
-  <audio id="reiniciarAlgo" src="Reboot.mp3"></audio>
+  <audio id="reiniciarAlgo" src="Reboot.mp3" loop></audio>
 
   <script>
     // elementos
@@ -603,7 +603,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     }
   }
   function tocarReboot() {
-    rebootSound.loop = true;
     if (audioLigado === true) document.getElementById("rebootSound").play();
   }
   function pararReboot() {
