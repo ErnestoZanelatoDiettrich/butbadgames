@@ -617,7 +617,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       sistemaAudioOK = true;
       pararReboot();
       statusAudioSistema.textContent = "Áudio: Funcionando";
-      console.log("✅ Sistema de áudio reiniciado.");
     },10000);
   }
   function quebrarVentilacao() {
@@ -652,7 +651,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       barraToxidade.value = toxidade;
       pararReboot();
       if (toxidadeInterval) clearInterval(toxidadeInterval);
-      console.log("✅ Sistema de ventilação reiniciado.");
     },10000);
   }
   function tocarMusicaMenu() {
@@ -709,8 +707,6 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       if (sistemaVentilacaoOK && Math.random() < 0.05) {
         sistemaVentilacaoOK = false;
         statusVentilacaoSistema.textContent = "Ventilação: Quebrada";
-        console.log("⚠️ Ventilação quebrou!");
-    
         // começar a toxidade
         toxidadeInterval = setInterval(() => {
           if (!sistemaVentilacaoOK) {
@@ -851,7 +847,7 @@ function aplicarGrafico() {
       hora = 0;
       menuMusic.pause();
       gameAmbience.volume = 0.5;
-      if (audioLigado) gameAmbience.play();
+      if (audioLigado === true) gameAmbience.play();
       animatronic.pos = 1;
       relogio.innerText = horas[hora];
       fundoAtivo = 1;
@@ -947,8 +943,6 @@ function moverAnimatronic() {
   if (chance > dificuldade) {
     if (animatronic.pos < 7) {
       animatronic.pos++;
-      console.log("Animatronic moveu para a câmera " + animatronic.pos);
-
       // Se estiver na mesma câmera que o jogador está vendo
       if (cameraAtual === animatronic.pos) {
         console.log("Você vê o animatronic agora!");
@@ -956,8 +950,6 @@ function moverAnimatronic() {
     } else {
       gameOver(); // chegou na sala → jumpscare
     }
-  } else {
-    console.log("Animatronic ficou parado.");
   }
 }
 
