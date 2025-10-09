@@ -371,7 +371,7 @@
 
   <!-- Menu inicial -->
   <div id="menu">
-    <div id="versao">Version: Beta 1.1</div>
+    <div id="versao">Version: Beta 1.2</div>
     <div id="creditos">Credits: Ernesto Z.D.</div>
     <button onclick="iniciarJogo()">Start</button>
     <button onclick="abrirOpcoes()">Options</button>
@@ -430,16 +430,16 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     <!-- Tablet 2 - Manutenção -->
     <div id="tablet2">
       <button id="fecharTablet2" onclick="fecharTablet2()">X</button>
-      <h2>Manutenção</h2>
+      <h2>Systems</h2>
     
-      <p id="statusAudioSistema">Áudio: Funcionando</p>
-      <button onclick="reiniciarAudioSistema()">Reiniciar Áudio</button>
+      <p id="statusAudioSistema">Audio: Working</p>
+      <button onclick="reiniciarAudioSistema()">Reboot audio</button>
     
-      <p id="statusVentilacaoSistema">Ventilação: Funcionando</p>
-      <button onclick="reiniciarVentilacaoSistema()">Reiniciar Ventilação</button>
+      <p id="statusVentilacaoSistema">Ventilation: Working</p>
+      <button onclick="reiniciarVentilacaoSistema()">Reboot ventilation</button>
     
       <div style="margin-top: 15px; width: 80%;">
-        <label for="barraToxidade">Toxidade:</label>
+        <label for="barraToxidade">Toxicity:</label>
         <progress id="barraToxidade" value="0" max="100" style="width:100%;"></progress>
       </div>
     </div>
@@ -704,7 +704,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     function verificarVentilacao() {
       if (sistemaVentilacaoOK && Math.random() < 0.05) {
         sistemaVentilacaoOK = false;
-        statusVentilacaoSistema.textContent = "Ventilação: Quebrada";
+        statusVentilacaoSistema.textContent = "Ventilation: Not working";
         // começar a toxidade
         toxidadeInterval = setInterval(() => {
           if (!sistemaVentilacaoOK) {
@@ -793,7 +793,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       // chance de quebrar ao tocar
       if (Math.random() < 0.2) {
         sistemaAudioOK = false;
-        statusAudioSistema.textContent = "Áudio: Quebrado";
+        statusAudioSistema.textContent = "Audio: Not working";
         console.log("⚠️ O sistema de áudio quebrou!");
         return;
       }
