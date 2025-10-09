@@ -14,7 +14,17 @@
     }
   
     /* Menu inicial */
+    #opcoesTxt {
+      color: #ff0000;
+      font-family: 'Creepster', sans-serif;
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px black;
 
+
+    }
     #menu { 
       background: url('tela do menu.png') no-repeat center; 
       position: fixed;
@@ -380,6 +390,19 @@
 
   <!-- Opções -->
   <div id="opcoes">
+    
+    <h1>Controles</h1>
+    <div id="opcoesTxt">
+      Funções principais:     Funções de developer:
+      
+      C = Cameras              B = Reboot audio /*dev comands
+      V = Ventilation          N = Reboot audio
+      Arrows = Perceptive      X = Jumpscare ending
+      Q = Systems              J = Survived ending
+                               O = Break audio
+                               P = Break ventilation
+  
+    </div>
     <button onclick="toggleAudio()">Audio: <span id="statusAudio">On</span></button>
     <button onclick="alterarGrafico()">Graphics: <span id="statusGrafico">High</span></button>
     <button onclick="voltarMenu()">Back</button>
