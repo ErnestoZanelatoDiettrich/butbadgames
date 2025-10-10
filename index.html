@@ -638,12 +638,12 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
     setTimeout(() => {
       sistemaAudioOK = true;
       pararReboot();
-      statusAudioSistema.textContent = "Áudio: Funcionando";
+      statusAudioSistema.textContent = "Audio: Working";
     },10000);
   }
   function quebrarVentilacao() {
     sistemaVentilacaoOK = false;
-        statusVentilacaoSistema.textContent = "Ventilação: Quebrada";
+        statusVentilacaoSistema.textContent = "Ventilation: Not working";
     
         // começar a toxidade
         toxidadeInterval = setInterval(() => {
@@ -659,14 +659,14 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
       }
    function quebrarAudio() {
       sistemaAudioOK = false;
-      statusAudioSistema.textContent = "Áudio: Quebrado";
+      statusAudioSistema.textContent = "Audio: Not working";
    }
   // Reiniciar ventilação do sistema
   function reiniciarVentilacaoSistema() {
     tocarReboot();
     setTimeout(() => {
       sistemaVentilacaoOK = true;
-      statusVentilacaoSistema.textContent = "Ventilação: Funcionando";
+      statusVentilacaoSistema.textContent = "Ventilation: Working";
       toxidade = 0;
       barraToxidade.value = toxidade;
       pararReboot();
