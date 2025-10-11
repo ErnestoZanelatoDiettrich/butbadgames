@@ -1030,31 +1030,16 @@ window.onload = () => {
     minimapa: "fds minimap ofc.png",
     cameras: [
       null, // índice 0 ignorado (começa em 1)
-      "cam1 revamp.png",
-      "cam2 revamp.png",
-      "cam3 revamp.png",
-      "cam4 revamp.png",
-      "cam5 revamp.png",
-      "cam6 revamp.png",
-      "cam7 revamp.png"
+      "cam1High.png",
+      "cam2High.png",
+      "cam3High.png",
+      "cam4High.png",
+      "cam5High.png",
+      "cam6High.png",
+      "cam7High.png"
     ]
   },
-  Medium: {
-    fundoPrincipal: "fds fnaf png.png",
-    fundoDireita: "visaodireita MEDIUM.png",
-    fundoVent: "ventilacao.png",
-    minimapa: "fds minimap ofc.png",
-    cameras: [
-      null,
-      "cam1.png",
-      "cam2.png",
-      "cam3.png",
-      "cam4.png",
-      "cam5.png",
-      "cam6.png",
-      "cam7.png"
-    ]
-  },
+
   Low: {
     fundoPrincipal: "fds fnaf png.png",
     fundoDireita: "visaodireita.png",
@@ -1062,13 +1047,13 @@ window.onload = () => {
     minimapa: "fds minimap ofc.png",
     cameras: [
       null,
-      "cam1.png",
-      "cam2.png",
-      "cam3.png",
-      "cam4.png",
-      "cam5.png",
-      "cam6.png",
-      "cam7.png"
+      "cam1Low.png",
+      "cam2Low.png",
+      "cam3Low.png",
+      "cam4Low.png",
+      "cam5Low.png",
+      "cam6Low.png",
+      "cam7Low.png"
     ]
   }
 };
@@ -1100,10 +1085,8 @@ function aplicarGrafico() {
 
 // Alterar gráfico
 function alterarGrafico() {
-  if (grafico === "High") grafico = "Medium";
-  else if (grafico === "Medium") grafico = "Low";
-  else grafico = "High";
-
+  if (grafico === "High") grafico = "Low";
+  else if (grafico === "Low") grafico = "High";
   statusGrafico.textContent = grafico;
   aplicarGrafico(); // aplica imediatamente a mudança
 }
