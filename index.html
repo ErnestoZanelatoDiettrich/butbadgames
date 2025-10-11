@@ -799,7 +799,7 @@ Qualquer tipo de problema ocorrido no nosso estabelecimento, não estaremos nos 
             staticSound.play();
         }
       } else {
-          let qualidade = grafico === "High" ? "alta" : "baixa";
+          let qualidade = grafico === "High" ? "High" : "Low";
           view.innerHTML = `<img src="cam${num}_${qualidade}.png" alt="Câmera ${num} (${grafico})">`;
     }
 }
